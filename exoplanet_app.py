@@ -126,7 +126,7 @@ elif page == "Researcher Mode":
         st.subheader("🚀 Using default NASA dataset")
         # 这里你可以加载本地的 NASA 数据文件（假设是 CSV）
         try:
-            nasa_data = pd.read_csv("kepler.csv")
+            nasa_data = pd.read_csv(r"C:\Users\user\Downloads\kepler.csv")
             st.write(nasa_data.head())
             st.success("✅ NASA dataset loaded successfully!")
 
