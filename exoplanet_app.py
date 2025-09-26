@@ -128,37 +128,53 @@ elif page == "Researcher Mode":
             all_columns = data.columns.tolist()
             target_col = st.selectbox("Select Target Column (e.g., koi_disposition)", all_columns)
             feature_cols = st.multiselect("Select Feature Columns", all_columns, default=all_columns)
-            # --- Mode Selection ---
+
+            # --- Model Selection ---
+            model_choice = st.radio("Choose Model", ["RandomForest", "LightGBM"])
             mode = st.radio("Select Training Mode", ["Manual Hyperparameters", "Auto Hyperparameter Tuning"])
 
+            # --- Manual Mode ---
             if mode == "Manual Hyperparameters":
                 st.subheader("🎛️ Manual Hyperparameter Tuning")
-                n_estimators = st.slider("Number of Trees (n_estimators)", 50, 500, 200, 50)
-                max_depth = st.slider("Max Depth", 2, 20, 10)
-                min_samples_split = st.slider("Min Samples Split", 2, 10, 2)
-                min_samples_leaf = st.slider("Min Samples Leaf", 1, 10, 1)
+
+                if model_choice == "RandomForest":
+                    n_estimators = st.slider("Number of Trees (n_estimators)", 50, 500, 200, 50)
+                    max_depth = st.slider("Max Depth", 2, 20, 10)
+                    min_samples_split = st.slider("Min Samples Split", 2, 10, 2)
+                    min_samples_leaf = st.slider("Min Samples Leaf", 1, 10, 1)
+
+                else:  # LightGBM
+                    n_estimators = st.slider("Number of Trees (n_estimators)", 50, 500, 200, 50)
+                    max_depth = st.slider("Max Depth", -1, 20, 6)  # -1 = no limit
+                    learning_rate = st.slider("Learning Rate", 0.01, 0.3, 0.05, 0.01)
 
                 if st.button("🚀 Train Model"):
                     if len(feature_cols) > 0:
                         X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
                         y = data[target_col]
+                        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-                        X_train, X_test, y_train, y_test = train_test_split(
-                            X, y, test_size=0.2, random_state=42
-                        )
+                        if model_choice == "RandomForest":
+                            model = RandomForestClassifier(
+                                n_estimators=n_estimators,
+                                max_depth=max_depth,
+                                min_samples_split=min_samples_split,
+                                min_samples_leaf=min_samples_leaf,
+                                random_state=42
+                            )
+                        else:
+                            import lightgbm as lgb
+                            model = lgb.LGBMClassifier(
+                                n_estimators=n_estimators,
+                                max_depth=max_depth,
+                                learning_rate=learning_rate,
+                                random_state=42
+                            )
 
-                        model = RandomForestClassifier(
-                            n_estimators=n_estimators,
-                            max_depth=max_depth,
-                            min_samples_split=min_samples_split,
-                            min_samples_leaf=min_samples_leaf,
-                            random_state=42
-                        )
                         model.fit(X_train, y_train)
-
                         y_pred = model.predict(X_test)
                         acc = accuracy_score(y_test, y_pred)
-                        st.success(f"✅ Model trained! Accuracy: **{acc:.2f}**")
+                        st.success(f"✅ {model_choice} trained! Accuracy: **{acc:.2f}**")
 
                         import joblib
                         joblib.dump(model, "exoplanet_model.pkl")
@@ -172,6 +188,7 @@ elif page == "Researcher Mode":
                         sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt="d", cmap="Blues", ax=ax)
                         st.pyplot(fig)
 
+            # --- Auto Mode ---
             elif mode == "Auto Hyperparameter Tuning":
                 st.subheader("🤖 Auto Hyperparameter Tuning with GridSearchCV")
 
@@ -179,35 +196,37 @@ elif page == "Researcher Mode":
                     if len(feature_cols) > 0:
                         X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
                         y = data[target_col]
-
-                        X_train, X_test, y_train, y_test = train_test_split(
-                            X, y, test_size=0.2, random_state=42
-                        )
+                        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
                         from sklearn.model_selection import GridSearchCV
 
-                        param_grid = {
-                            "n_estimators": [100, 200, 300],
-                            "max_depth": [5, 10, 15],
-                            "min_samples_split": [2, 5, 10],
-                            "min_samples_leaf": [1, 2, 4],
-                        }
+                        if model_choice == "RandomForest":
+                            param_grid = {
+                                "n_estimators": [100, 200, 300],
+                                "max_depth": [5, 10, 15],
+                                "min_samples_split": [2, 5, 10],
+                                "min_samples_leaf": [1, 2, 4],
+                            }
+                            grid = GridSearchCV(RandomForestClassifier(random_state=42),
+                                                param_grid, cv=3, n_jobs=-1, verbose=1)
 
-                        grid = GridSearchCV(
-                            RandomForestClassifier(random_state=42),
-                            param_grid,
-                            cv=3,
-                            n_jobs=-1,
-                            verbose=1
-                        )
+                        else:  # LightGBM
+                            import lightgbm as lgb
+                            param_grid = {
+                                "n_estimators": [100, 200, 300],
+                                "max_depth": [-1, 6, 12],
+                                "learning_rate": [0.01, 0.05, 0.1],
+                            }
+                            grid = GridSearchCV(lgb.LGBMClassifier(random_state=42),
+                                                param_grid, cv=3, n_jobs=-1, verbose=1)
+
                         grid.fit(X_train, y_train)
-
                         st.success(f"🎯 Best Parameters: {grid.best_params_}")
                         best_model = grid.best_estimator_
 
                         y_pred = best_model.predict(X_test)
                         acc = accuracy_score(y_test, y_pred)
-                        st.success(f"✅ Best Model Accuracy: **{acc:.2f}**")
+                        st.success(f"✅ Best {model_choice} Accuracy: **{acc:.2f}**")
 
                         import joblib
                         joblib.dump(best_model, "exoplanet_model.pkl")
