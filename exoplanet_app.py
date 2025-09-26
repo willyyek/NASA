@@ -127,8 +127,7 @@ elif page == "Researcher Mode":
             st.subheader("⚙️ Model Training")
             all_columns = data.columns.tolist()
             target_col = st.selectbox("Select Target Column (e.g., koi_disposition)", all_columns)
-            feature_cols = st.multiselect("Select Feature Columns", all_columns, default=all_columns[:5])
-
+            feature_cols = st.multiselect("Select Feature Columns", all_columns, default=all_columns)
             # --- Mode Selection ---
             mode = st.radio("Select Training Mode", ["Manual Hyperparameters", "Auto Hyperparameter Tuning"])
 
