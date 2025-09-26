@@ -133,6 +133,38 @@ elif page == "Researcher Mode":
             # 这里你也可以直接加上训练步骤
             st.info("📌 Ready for training with NASA dataset.")
 
+            # 假设你已经加载好了 nasa_data
+            target = "koi_disposition"
+
+            # 选择数值型特征
+            features = nasa_data.select_dtypes(include=["float64", "int64"]).columns.tolist()
+
+            X = nasa_data[features]
+            y = nasa_data[target]
+
+            # 去掉空值
+            X = X.fillna(0)
+
+            # 切分训练集/测试集
+            X_train, X_test, y_train, y_test = train_test_split(
+                X, y, test_size=0.2, random_state=42
+            )
+
+            # 训练 LightGBM
+            model = lgb.LGBMClassifier(
+                class_weight="balanced",
+                learning_rate=0.05,
+               n_estimators=200,
+                max_depth=6,
+                random_state=42
+            )
+
+            model.fit(X_train, y_train)
+
+            # 输出测试结果
+            import streamlit as st
+            st.text(classification_report(y_test, y_pred))
+
         except Exception as e:
             st.error(f"❌ Could not load NASA dataset: {e}")
 
