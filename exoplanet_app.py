@@ -135,26 +135,26 @@ elif page == "Researcher Mode":
 
             if "label" not in new_data.columns:
                     st.error("⚠️ Your dataset must contain a 'label' column for training.")
-                else:
+            else:
                     # 分割数据
                     X = new_data.drop("label", axis=1)
                     y = new_data["label"]
 
-            # 假设你已经加载好了 nasa_data
-            target = "koi_disposition"
+                    # 假设你已经加载好了 nasa_data
+                    target = "koi_disposition"
 
-            # 选择数值型特征
-            features = nasa_data.select_dtypes(include=["float64", "int64"]).columns.tolist()
+                    # 选择数值型特征
+                    features = nasa_data.select_dtypes(include=["float64", "int64"]).columns.tolist()
 
-            X = nasa_data[features]
-            y = nasa_data[target]
+                    X = nasa_data[features]
+                    y = nasa_data[target]
 
-            # 去掉空值
-            X = X.fillna(0)
+                    # 去掉空值
+                    X = X.fillna(0)
 
-            # 切分训练集/测试集
-            X_train, X_test, y_train, y_test = train_test_split(
-                X, y, test_size=0.2, random_state=42
+                    # 切分训练集/测试集
+                    X_train, X_test, y_train, y_test = train_test_split(
+                        X, y, test_size=0.2, random_state=42
             )
 
             # 训练 LightGBM
