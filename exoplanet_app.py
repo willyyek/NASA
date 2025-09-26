@@ -121,7 +121,7 @@ elif page == "Researcher Mode":
         try:
             data = pd.read_csv(uploaded_file, comment="#", sep=None, engine="python")
             st.success("✅ File loaded successfully!")
-            st.dataframe(data.head())
+            st.dataframe(data)
 
             # --- Choose Features & Target ---
             st.subheader("⚙️ Model Training")
