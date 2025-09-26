@@ -1,3 +1,4 @@
+import pandas as pd
 import streamlit as st
 import pickle
 import numpy as np
@@ -81,3 +82,19 @@ if st.button("🔍 Predict Exoplanet"):
         - A false positive means the signal is not caused by a planet.  
         - It could be due to noise, binary stars, or stellar activity instead of an exoplanet.  
         """)
+
+uploaded_file = st.file_uploader("Upload your dataset (CSV/Excel)", type=["csv", "xlsx"])
+
+if uploaded_file is not None:
+    if uploaded_file.name.endswith(".csv"):
+        data = pd.read_csv(uploaded_file)
+    else:
+        data = pd.read_excel(uploaded_file)
+    
+    st.write("📊 Preview of your uploaded data:")
+    st.dataframe(data.head())
+
+    # Run model prediction
+    predictions = model.predict(data)
+    st.write("✅ Predictions completed!")
+    st.dataframe(predictions)
