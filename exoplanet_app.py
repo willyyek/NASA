@@ -64,7 +64,7 @@ elif page == "Novice Mode":
 
     st.title("🚀 NASA Exoplanet Classifier")
     st.markdown("<h2 style='text-align: center; color: #1E90FF;'>Galactic Explorer 117</h2>", unsafe_allow_html=True)
-    st.write("<h3 style='text-align: center; color: yellow;'>Analyze Kepler exoplanet data and classify candidates into Confirmed, Candidate, or     False Positive", unsafe_allow_html=True)
+    st.write("<h3 style='text-align: center; color: yellow;'>Analyze Kepler exoplanet data and classify candidates into Confirmed, Candidate, or False Positive</h3>", unsafe_allow_html=True)
 
     # 用户输入
     koi_period = st.number_input("Enter Orbital Period (days)", min_value=0.0, step=0.1, value=10.0)
@@ -116,51 +116,51 @@ elif page == "Researcher Mode":
 
     uploaded_file = st.file_uploader("📂 Upload dataset", type=["csv", "txt", "tsv", "xlsx"])
 
-        if uploaded_file is not None:
-            try:
-                data = pd.read_csv(uploaded_file, comment="#", sep=None, engine="python")
-                st.success("✅ File loaded successfully!")
-                st.dataframe(data.head())
+    if uploaded_file is not None:
+        try:
+            data = pd.read_csv(uploaded_file, comment="#", sep=None, engine="python")
+            st.success("✅ File loaded successfully!")
+            st.dataframe(data.head())
 
-                # --- Choose Features & Target ---
-                st.subheader("⚙️ Model Training")
-                all_columns = data.columns.tolist()
-                target_col = st.selectbox("Select Target Column (e.g., koi_disposition)", all_columns)
-                feature_cols = st.multiselect("Select Feature Columns", all_columns, default=all_columns[:5])
+            # --- Choose Features & Target ---
+            st.subheader("⚙️ Model Training")
+            all_columns = data.columns.tolist()
+            target_col = st.selectbox("Select Target Column (e.g., koi_disposition)", all_columns)
+            feature_cols = st.multiselect("Select Feature Columns", all_columns, default=all_columns[:5])
 
-                if st.button("🚀 Train Model"):
-                    if len(feature_cols) > 0:
-                        X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
-                        y = data[target_col]
+            if st.button("🚀 Train Model"):
+                if len(feature_cols) > 0:
+                    X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
+                    y = data[target_col]
 
-                        X_train, X_test, y_train, y_test = train_test_split(
-                            X, y, test_size=0.2, random_state=42
-                        )
+                    X_train, X_test, y_train, y_test = train_test_split(
+                        X, y, test_size=0.2, random_state=42
+                    )
 
-                        model = RandomForestClassifier(n_estimators=200, random_state=42)
-                        model.fit(X_train, y_train)
+                    model = RandomForestClassifier(n_estimators=200, random_state=42)
+                    model.fit(X_train, y_train)
 
-                        y_pred = model.predict(X_test)
-                        acc = accuracy_score(y_test, y_pred)
+                    y_pred = model.predict(X_test)
+                    acc = accuracy_score(y_test, y_pred)
 
-                        st.success(f"✅ Model trained! Accuracy: **{acc:.2f}**")
+                    st.success(f"✅ Model trained! Accuracy: **{acc:.2f}**")
                     
-                        import joblib
-                        joblib.dump(model, "exoplanet_model.pkl")
-                        st.info("💾 Model saved as `exoplanet_model.pkl`")
+                    import joblib
+                    joblib.dump(model, "exoplanet_model.pkl")
+                    st.info("💾 Model saved as `exoplanet_model.pkl`")
 
-                        # Classification report
-                        st.subheader("📊 Classification Report")
-                        st.text(classification_report(y_test, y_pred))
+                    # Classification report
+                    st.subheader("📊 Classification Report")
+                    st.text(classification_report(y_test, y_pred))
 
-                        # Confusion Matrix
-                        st.subheader("🔎 Confusion Matrix")
-                        fig, ax = plt.subplots()
-                        sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt="d", cmap="Blues", ax=ax)
-                        st.pyplot(fig)
+                    # Confusion Matrix
+                    st.subheader("🔎 Confusion Matrix")
+                    fig, ax = plt.subplots()
+                    sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt="d", cmap="Blues", ax=ax)
+                    st.pyplot(fig)
 
-                    else:
-                        st.error("⚠️ Please select at least one feature column.")
+                else:
+                    st.error("⚠️ Please select at least one feature column.")
 
-            except Exception as e:
-                st.error(f"❌ Could not read file: {e}")
+        except Exception as e:
+            st.error(f"❌ Could not read file: {e}")
