@@ -134,11 +134,11 @@ elif page == "Researcher Mode":
             st.info("📌 Ready for training with NASA dataset.")
 
             if "label" not in new_data.columns:
-                     st.error("⚠️ Your dataset must contain a 'label' column for training.")
-                 else:
-                     # 分割数据
-                     X = new_data.drop("label", axis=1)
-                     y = new_data["label"]
+                    st.error("⚠️ Your dataset must contain a 'label' column for training.")
+                else:
+                    # 分割数据
+                    X = new_data.drop("label", axis=1)
+                    y = new_data["label"]
 
             # 假设你已经加载好了 nasa_data
             target = "koi_disposition"
