@@ -83,16 +83,22 @@ if st.button("🔍 Predict Exoplanet"):
         - It could be due to noise, binary stars, or stellar activity instead of an exoplanet.  
         """)
 
-uploaded_file = st.file_uploader("Upload your dataset (CSV/Excel)", type=["csv", "xlsx"])
+uploaded_file = st.file_uploader("Upload NASA dataset", type=["csv", "txt", "tsv", "xlsx"])
 
 if uploaded_file is not None:
-    if uploaded_file.name.endswith(".csv"):
-        data = pd.read_csv(uploaded_file, sep=None, engine="python")
-    
-    st.write("📊 Preview of your uploaded data:")
-    st.dataframe(data.head())
+    try:
+        if uploaded_file.name.endswith(".xlsx") or uploaded_file.name.endswith(".xls"):
+            data = pd.read_excel(uploaded_file)
+        else:
+            try:
+                # 尝试逗号分隔 + 忽略注释
+                data = pd.read_csv(uploaded_file, sep=",", comment="#")
+            except Exception:
+                # 如果失败，尝试 Tab 分隔
+                data = pd.read_csv(uploaded_file, sep="\t", comment="#")
 
-    # Run model prediction
-    predictions = model.predict(data)
-    st.write("✅ Predictions completed!")
-    st.dataframe(predictions)
+        st.success("✅ File loaded successfully!")
+        st.dataframe(data.head())
+
+    except Exception as e:
+        st.error(f"❌ Could not read file: {e}")
