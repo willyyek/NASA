@@ -137,8 +137,8 @@ elif page == "Researcher Mode":
                     st.error("⚠️ Your dataset must contain a 'label' column for training.")
             else:
                     # 分割数据
-                    X = new_data.drop("label", axis=1)
-                    y = new_data["label"]
+                    X = nasa_data.drop("label", axis=1)
+                    y = nasa_data["label"]
 
                     # 假设你已经加载好了 nasa_data
                     target = "koi_disposition"
