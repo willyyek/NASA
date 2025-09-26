@@ -172,7 +172,7 @@ elif page == "Researcher Mode":
 
                         # Classification report
                         st.subheader("📊 Classification Report")
-                    st.text(classification_report(y_test, y_pred))
+                        st.text(classification_report(y_test, y_pred))
 
                         # Confusion Matrix
                         st.subheader("🔎 Confusion Matrix")
