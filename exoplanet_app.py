@@ -133,7 +133,7 @@ elif page == "Researcher Mode":
             # 这里你也可以直接加上训练步骤
             st.info("📌 Ready for training with NASA dataset.")
 
-            if "label" not in new_data.columns:
+            if "label" not in nasa_data.columns:
                     st.error("⚠️ Your dataset must contain a 'label' column for training.")
             else:
                     # 分割数据
