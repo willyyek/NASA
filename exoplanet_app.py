@@ -181,7 +181,7 @@ elif page == "Researcher Mode":
                         st.pyplot(fig)
 
                     else:
-                    st.error("⚠️ Please select at least one feature column.")
+                        st.error("⚠️ Please select at least one feature column.")
 
             except Exception as e:
                 st.error(f"❌ Could not read file: {e}")
