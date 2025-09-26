@@ -112,9 +112,31 @@ elif page == "Novice Mode":
 # --- Researcher Mode ---
 elif page == "Researcher Mode":
     st.header("🔬 Researcher Mode - Advanced Tools")
+    st.write("Here you can upload new datasets, retrain the model, and analyze accuracy.")
 
-    uploaded_file = st.file_uploader("Upload NASA dataset", type=["csv", "txt", "tsv", "xlsx"])
+    uploaded_file = st.file_uploader("📂 Upload dataset", type=["csv", "txt", "tsv", "xlsx"])
 
+    # 选择数据来源
+    data_option = st.radio(
+        "📊 Select dataset option:",
+        ["Use Default NASA Data", "Upload My Own Data"]
+    )
+
+    if data_option == "Use Default NASA Data":
+        st.subheader("🚀 Using default NASA dataset")
+        # 这里你可以加载本地的 NASA 数据文件（假设是 CSV）
+        try:
+            nasa_data = pd.read_csv("kepler.csv")
+            st.write(nasa_data.head())
+            st.success("✅ NASA dataset loaded successfully!")
+
+            # 这里你也可以直接加上训练步骤
+            st.info("📌 Ready for training with NASA dataset.")
+
+        except Exception as e:
+            st.error(f"❌ Could not load NASA dataset: {e}")
+
+    elif data_option == "Upload My Own Data":
     if uploaded_file is not None:
         try:
             data = pd.read_csv(uploaded_file, comment="#", sep=None, engine="python")
@@ -143,6 +165,10 @@ elif page == "Researcher Mode":
                     acc = accuracy_score(y_test, y_pred)
 
                     st.success(f"✅ Model trained! Accuracy: **{acc:.2f}**")
+                    
+                    import joblib
+                    joblib.dump(model, "exoplanet_model.pkl")
+                    st.info("💾 Model saved as `exoplanet_model.pkl`")
 
                     # Classification report
                     st.subheader("📊 Classification Report")
