@@ -128,7 +128,14 @@ elif page == "Researcher Mode":
             target_col = st.selectbox("Select Target Column (e.g., koi_disposition)", all_columns)
             feature_cols = st.multiselect("Select Feature Columns", all_columns, default=all_columns[:5])
 
-            if st.button("🚀 Train Model"):
+            # --- Hyperparameter Tuning ---
+            st.subheader("🎛️ Hyperparameter Tuning")
+            n_estimators = st.slider("Number of Trees (n_estimators)", 50, 500, 200, 50)
+            max_depth = st.slider("Max Depth", 2, 20, 10)
+            min_samples_split = st.slider("Min Samples Split", 2, 10, 2)
+            min_samples_leaf = st.slider("Min Samples Leaf", 1, 10, 1)
+
+            if st.button("🚀 Train Model with Hyperparameters"):
                 if len(feature_cols) > 0:
                     X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
                     y = data[target_col]
@@ -137,14 +144,21 @@ elif page == "Researcher Mode":
                         X, y, test_size=0.2, random_state=42
                     )
 
-                    model = RandomForestClassifier(n_estimators=200, random_state=42)
+                    # Apply hyperparameters
+                    model = RandomForestClassifier(
+                        n_estimators=n_estimators,
+                        max_depth=max_depth,
+                        min_samples_split=min_samples_split,
+                        min_samples_leaf=min_samples_leaf,
+                        random_state=42
+                    )
                     model.fit(X_train, y_train)
 
                     y_pred = model.predict(X_test)
                     acc = accuracy_score(y_test, y_pred)
 
-                    st.success(f"✅ Model trained! Accuracy: **{acc:.2f}**")
-                    
+                    st.success(f"✅ Model trained with hyperparameters! Accuracy: **{acc:.2f}**")
+
                     import joblib
                     joblib.dump(model, "exoplanet_model.pkl")
                     st.info("💾 Model saved as `exoplanet_model.pkl`")
