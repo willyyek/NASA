@@ -116,66 +116,6 @@ elif page == "Researcher Mode":
 
     uploaded_file = st.file_uploader("📂 Upload dataset", type=["csv", "txt", "tsv", "xlsx"])
 
-    # 选择数据来源
-    data_option = st.radio(
-        "📊 Select dataset option:",
-        ["Use Default NASA Data", "Upload My Own Data"]
-    )
-
-    if data_option == "Use Default NASA Data":
-        st.subheader("🚀 Using default NASA dataset")
-        # 这里你可以加载本地的 NASA 数据文件（假设是 CSV）
-        try:
-            nasa_data = pd.read_csv("https://github.com/willyyek/NASA/raw/refs/heads/main/kepler.csv", sep="\t", comment="#")
-            st.write(nasa_data.head())
-            st.success("✅ NASA dataset loaded successfully!")
-
-            # 这里你也可以直接加上训练步骤
-            st.info("📌 Ready for training with NASA dataset.")
-
-            if "label" not in nasa_data.columns:
-                    st.error("⚠️ Your dataset must contain a 'label' column for training.")
-            else:
-                    # 分割数据
-                    X = nasa_data.drop("label", axis=1)
-                    y = nasa_data["label"]
-
-                    # 假设你已经加载好了 nasa_data
-                    target = "koi_disposition"
-
-                    # 选择数值型特征
-                    features = nasa_data.select_dtypes(include=["float64", "int64"]).columns.tolist()
-
-                    X = nasa_data[features]
-                    y = nasa_data[target]
-
-                    # 去掉空值
-                    X = X.fillna(0)
-
-                    # 切分训练集/测试集
-                    X_train, X_test, y_train, y_test = train_test_split(
-                        X, y, test_size=0.2, random_state=42
-            )
-
-            # 训练 LightGBM
-            model = lgb.LGBMClassifier(
-                class_weight="balanced",
-                learning_rate=0.05,
-               n_estimators=200,
-                max_depth=6,
-                random_state=42
-            )
-
-            model.fit(X_train, y_train)
-
-            # 输出测试结果
-            import streamlit as st
-            st.text(classification_report(y_test, y_pred))
-
-        except Exception as e:
-            st.error(f"❌ Could not load NASA dataset: {e}")
-
-    elif data_option == "Upload My Own Data":
         if uploaded_file is not None:
             try:
                 data = pd.read_csv(uploaded_file, comment="#", sep=None, engine="python")
