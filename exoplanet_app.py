@@ -87,9 +87,7 @@ uploaded_file = st.file_uploader("Upload your dataset (CSV/Excel)", type=["csv",
 
 if uploaded_file is not None:
     if uploaded_file.name.endswith(".csv"):
-        data = pd.read_csv(uploaded_file)
-    else:
-        data = pd.read_excel(uploaded_file)
+        data = pd.read_csv(uploaded_file, sep=None, engine="python")
     
     st.write("📊 Preview of your uploaded data:")
     st.dataframe(data.head())
