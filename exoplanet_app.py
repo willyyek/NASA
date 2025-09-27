@@ -25,13 +25,13 @@ if page == "Home":
     st.write("""
     Welcome to our Exoplanet Classifier!  
     Choose one of the modes from the sidebar:
-    - **Novice Mode** 🟢 : For beginners, explore planets by entering basic parameters.  
+    - **Novice Mode** 🟢 : For beginners, explore planets by entering basic parameters. (Default dataset: <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">NASA Kepler Objects of Interest(KOI)</a>)
     - **Researcher Mode** 🔬 : For advanced users, upload datasets, train models, and analyze results.  
     """)
 
 # --- Novice Mode ---
 elif page == "Novice Mode":
-    st.header("🟢 Novice Mode - Quick Classification")
+    st.markdown("<h1 style='text-align: center; color: white;'>🟢 Novice Mode - Quick Classification</h1>", unsafe_allow_html=True)
 
     # 设置星空背景
     page_bg_img = """
@@ -63,9 +63,8 @@ elif page == "Novice Mode":
     with col3:
         st.image("https://github.com/chengkiet2020-byte/exoplanet-app/blob/main/logo.png?raw=true", width=410)
 
-    st.title("🚀 NASA Exoplanet Classifier")
-    st.markdown("<h2 style='text-align: center; color: #1E90FF;'>Galactic Explorer 117</h2>", unsafe_allow_html=True)
-    st.write("<h3 style='text-align: center; color: yellow;'>Analyze Kepler exoplanet data and classify candidates into Confirmed, Candidate, or False Positive</h3>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: white;'>🚀 NASA Exoplanet Classifier</h1>", unsafe_allow_html=True)
+    st.write("<h3 style='text-align: center; color: white;'>Analyze Kepler exoplanet data and classify candidates into Confirmed, Candidate, or False Positive</h3>", unsafe_allow_html=True)
 
     # 用户输入
     koi_period = st.number_input("Enter Orbital Period (days)", min_value=0.0, step=0.1, value=10.0)
@@ -242,3 +241,11 @@ elif page == "Researcher Mode":
 
         except Exception as e:
             st.error(f"❌ Could not read file: {e}")
+    
+    st.write("""
+        **Or train using NASA dataset:**
+        -<a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">NASA Kepler Objects of Interest(KOI)</a>
+        -<a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=TOI">NASA TESS Objects of Interest (TOI)</a>
+        -<a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=k2pandc">NASA K2 Planets and Candidates</a>
+        These dataset need to download in CSV form and upload again.
+    """)
