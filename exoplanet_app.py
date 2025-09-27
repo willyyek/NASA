@@ -307,15 +307,31 @@ st.markdown("""
 
 st.markdown("""
 <style>
-/* Selectbox & Multiselect - 黑底白字 */
-div[data-baseweb="select"] {
-    background-color: #111111 !important;  /* 黑色背景 */
-    color: white !important;              /* 白色文字 */
-    border: 1px solid #1E90FF !important; /* NASA 蓝边框 */
-    border-radius: 5px;
+/* --- Selectbox & Multiselect 黑底白字 --- */
+div[data-baseweb="select"] > div {
+    background-color: #111111 !important;   /* 输入框黑色背景 */
+    color: white !important;                /* 文字白色 */
+    border: 1px solid #1E90FF !important;   /* NASA 蓝边框 */
+    border-radius: 5px !important;
 }
+
+/* 输入框里的文字 */
 div[data-baseweb="select"] span {
-    color: white !important; /* 下拉已选项目白字 */
+    color: white !important;
+}
+
+/* 下拉展开的菜单 */
+ul[role="listbox"] {
+    background-color: #111111 !important;   /* 下拉黑底 */
+    color: white !important;
+    border: 1px solid #1E90FF !important;
+}
+ul[role="listbox"] li {
+    color: white !important;                /* 下拉选项文字 */
+}
+ul[role="listbox"] li:hover {
+    background-color: #1E90FF !important;   /* Hover 高亮蓝 */
+    color: black !important;
 }
 </style>
 """, unsafe_allow_html=True)
