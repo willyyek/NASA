@@ -85,11 +85,6 @@ st.markdown(
         background-color: #1E90FF !important;
     }
 
-    /* DataFrame 表格 */
-    .stDataFrame div, .stTable {
-        color: white !important;
-        background-color: #111111;
-    }
     </style>
     """,
     unsafe_allow_html=True
