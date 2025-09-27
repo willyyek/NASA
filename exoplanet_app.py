@@ -13,13 +13,62 @@ import numpy as np
 st.markdown(
     """
     <style>
-    /* 设置整个 app 的字体颜色为白色 */
-    .stNumberInput label, .stTextInput label, .stSelectbox label, .stSlider label {
+    /* 整体背景黑色 */
+    .stApp {
+        background-color: #000000;
+        color: white !important;
+        font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    /* 标题 (title, header, subheader) 白色 + NASA 蓝 */
+    h1, h2, h3, h4, h5, h6 {
+        color: #00BFFF !important;  /* NASA 蓝色 */
+        font-weight: bold;
+    }
+
+    /* 普通文字 */
+    p, label, span, div {
         color: white !important;
     }
-    /* 设置普通文字颜色 */
-    .stMarkdown, .stRadio label, .stCheckbox label {
+
+    /* 按钮设计 */
+    .stButton>button {
+        background-color: #0B3D91;  /* 深蓝色 */
+        color: white;
+        border-radius: 10px;
+        border: 1px solid #1E90FF;
+        padding: 8px 16px;
+    }
+    .stButton>button:hover {
+        background-color: #1E90FF;  /* 浅蓝 hover */
+        color: black;
+    }
+
+    /* 输入框 (number_input, text_input 等) */
+    .stTextInput>div>div>input, .stNumberInput input {
+        background-color: #111111;
         color: white !important;
+        border: 1px solid #1E90FF;
+        border-radius: 5px;
+    }
+
+    /* 下拉菜单 */
+    .stSelectbox div[data-baseweb="select"]>div {
+        background-color: #111111;
+        color: white !important;
+        border: 1px solid #1E90FF;
+        border-radius: 5px;
+    }
+
+    /* 滑动条 slider 颜色 */
+    .stSlider [role="slider"] {
+        background-color: #1E90FF !important;
+    }
+
+    /* DataFrame 表格 */
+    .stDataFrame div, .stTable {
+        color: white !important;
+        background-color: #111111;
     }
     </style>
     """,
@@ -62,12 +111,15 @@ if page == "Home":
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
     st.subheader("🌌 Galactic Explorer 117")
-    st.write("""
-    Welcome to our Exoplanet Classifier!  
-    Choose one of the modes from the sidebar:
-    - **Novice Mode** 🟢 : For beginners, explore planets by entering basic parameters. (Default dataset: <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">NASA Kepler Objects of Interest(KOI)</a>)
-    - **Researcher Mode** 🔬 : For advanced users, upload datasets, train models, and analyze results.  
-    """)
+    st.markdown(
+        """
+        Welcome to our Exoplanet Classifier!  
+        Choose one of the modes from the sidebar:
+        - **Novice Mode** 🟢 : For beginners, explore planets by entering basic parameters. (Default dataset: <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">NASA Kepler Objects of Interest(KOI)</a>)
+        - **Researcher Mode** 🔬 : For advanced users, upload datasets, train models, and analyze results.  
+        """,
+        unsafe_allow_html=True
+    )
 
 # --- Novice Mode ---
 elif page == "Novice Mode":
@@ -304,10 +356,15 @@ elif page == "Researcher Mode":
         except Exception as e:
             st.error(f"❌ Could not read file: {e}")
     
-    st.write("""
-        **Or train using NASA dataset:**
-        -<a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">NASA Kepler Objects of Interest(KOI)</a>
-        -<a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=TOI">NASA TESS Objects of Interest (TOI)</a>
-        -<a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=k2pandc">NASA K2 Planets and Candidates</a>
-        These dataset need to download in CSV form and upload again.
-    """)
+    st.markdown(
+        """
+        **Or train using NASA datasets:**
+
+        - <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative" target="_blank">NASA Kepler Objects of Interest (KOI)</a>  
+        - <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=TOI" target="_blank">NASA TESS Objects of Interest (TOI)</a>  
+        - <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=k2pandc" target="_blank">NASA K2 Planets and Candidates</a>  
+
+        ⚠️ These datasets need to be downloaded in CSV format and uploaded here again.
+        """,
+        unsafe_allow_html=True
+    )
