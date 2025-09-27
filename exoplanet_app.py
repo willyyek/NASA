@@ -98,14 +98,16 @@ st.markdown(
 st.markdown(
     """
     <style>
+    /* 链接默认样式 */
     a {
-        color: #00BFFF !important;   /* NASA 蓝色 */
-        text-decoration: none;       /* 去掉默认下划线 */
-        font-weight: bold;           /* 让链接更醒目（可选） */
+        color: #00BFFF !important;       /* 更亮蓝 (DodgerBlue) */
+        text-decoration: none !important; /* 去掉下划线 */
+        font-weight: bold;
     }
+    /* 鼠标悬停样式 */
     a:hover {
-        color: #33CCFF !important;   /* 鼠标悬停时更亮的蓝色 */
-        text-decoration: underline;  /* 悬停时加下划线 */
+        color: #40CFFF !important;       /* 更浅亮蓝 */
+        text-decoration: underline !important; /* 悬停时显示下划线 */
     }
     </style>
     """,
@@ -152,7 +154,7 @@ if page == "Home":
         """
         Welcome to our Exoplanet Classifier!  
         Choose one of the modes from the sidebar:
-        - **Novice Mode** 🟢 : For beginners, explore planets by entering basic parameters. (Default dataset: <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">NASA Kepler Objects of Interest(KOI)</a>)
+        - **Novice Mode** 🟢 : For beginners, explore planets by entering basic parameters. (Default dataset: 🔗 <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">NASA Kepler Objects of Interest(KOI)</a>)
         - **Researcher Mode** 🔬 : For advanced users, upload datasets, train models, and analyze results.  
         """,
         unsafe_allow_html=True
