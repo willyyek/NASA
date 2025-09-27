@@ -31,27 +31,27 @@ if page == "Home":
 
 # --- Novice Mode ---
 elif page == "Novice Mode":
-    st.markdown("<h1 style='text-align: center; color: white;'>🟢 Novice Mode - Quick Classification</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: left; color: white;'>🟢 Novice Mode - Quick Classification</h2>", unsafe_allow_html=True)
 
     # 设置星空背景
-    page_bg_img = """
-    <style>
-    [data-testid="stAppViewContainer"] {
-        background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
+    #page_bg_img = """
+    #<style>
+    #[data-testid="stAppViewContainer"] {
+        #background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
+        #background-size: cover;
+        #background-position: center;
+        #background-repeat: no-repeat;
+    #}
 
-    [data-testid="stHeader"] {
-        background: rgba(0,0,0,0); /* 顶部透明 */
-    }
+    #[data-testid="stHeader"] {
+        #background: rgba(0,0,0,0); /* 顶部透明 */
+    #}
 
-    [data-testid="stToolbar"] {
-        right: 2rem;
-    }
-    </style>
-    """
+    #[data-testid="stToolbar"] {
+        #right: 2rem;
+    #}
+    #</style>
+    #"""
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
     # NASA Logo + 标题
