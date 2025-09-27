@@ -305,6 +305,21 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* Selectbox & Multiselect - 黑底白字 */
+div[data-baseweb="select"] {
+    background-color: #111111 !important;  /* 黑色背景 */
+    color: white !important;              /* 白色文字 */
+    border: 1px solid #1E90FF !important; /* NASA 蓝边框 */
+    border-radius: 5px;
+}
+div[data-baseweb="select"] span {
+    color: white !important; /* 下拉已选项目白字 */
+}
+</style>
+""", unsafe_allow_html=True)
+
 
 # 加载训练好的模型
 model = pickle.load(open("exoplanet_model.pkl", "rb"))
