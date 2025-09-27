@@ -137,15 +137,13 @@ st.markdown(
 
 st.markdown("""
     <style>
-    /* 修改加载圈为白色 */
-    .stSpinner > div {
-        border-top-color: white !important;
-        border-right-color: white !important;
-        border-bottom-color: white !important;
-        border-left-color: transparent !important;
+    /* 让 spinner 圈变成白色 */
+    div[data-testid="stSpinner"] div[role="status"] svg {
+        stroke: white !important;
     }
-    /* 修改loading文字为白色 */
-    .stSpinner > div > div {
+
+    /* 修改 spinner 文字为白色 */
+    div[data-testid="stSpinner"] div[role="status"] p {
         color: white !important;
     }
     </style>
