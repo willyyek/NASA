@@ -1,3 +1,14 @@
+import streamlit as st
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pickle
+import joblib
+import numpy as np
+
 # 放在 app 开头
 st.markdown(
     """
@@ -15,17 +26,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-import streamlit as st
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pickle
-import joblib
-import numpy as np
 
 # 加载训练好的模型
 model = pickle.load(open("exoplanet_model.pkl", "rb"))
