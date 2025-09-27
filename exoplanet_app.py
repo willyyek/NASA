@@ -248,6 +248,40 @@ elif page == "Researcher Mode":
 
     st.write("Here you can upload new datasets, retrain the model, and analyze accuracy.")
 
+    st.markdown(
+        """
+        <style>
+        /* File uploader 外框 */
+        [data-testid="stFileUploader"] section {
+            background-color: #000000;   /* 黑色背景 */
+            border: 1px solid #444444;   /* 灰色边框 */
+            border-radius: 8px;
+        }
+
+        /* File uploader 内部文字 */
+        [data-testid="stFileUploader"] label,
+        [data-testid="stFileUploader"] div,
+        [data-testid="stFileUploader"] p {
+            color: white !important;   /* 白色字体 */
+        }
+
+        /* 上传按钮 */
+        [data-testid="stFileUploader"] button {
+            background-color: #111111;   /* 按钮黑色 */
+            color: white !important;     /* 按钮文字白色 */
+            border: 1px solid #555555;
+            border-radius: 6px;
+        }
+
+        [data-testid="stFileUploader"] button:hover {
+            background-color: #222222;   /* hover 时稍微亮一点 */
+            border: 1px solid #888888;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
     uploaded_file = st.file_uploader("📂 Upload dataset", type=["csv", "txt", "tsv", "xlsx"])
 
     if uploaded_file is not None:
