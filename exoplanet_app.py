@@ -52,7 +52,7 @@ elif page == "Novice Mode":
     #}
     #</style>
     #"""
-    st.markdown(page_bg_img, unsafe_allow_html=True)
+    #st.markdown(page_bg_img, unsafe_allow_html=True)
 
     # NASA Logo + 标题
     col1, col2, col3 = st.columns([1, 2, 1])
