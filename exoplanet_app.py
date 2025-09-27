@@ -7,6 +7,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
 import joblib
+import time
+from sklearn.model_selection import ParameterGrid
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 import numpy as np
 
 # Custom CSS for gradient dark blue header + sidebar
@@ -151,6 +155,156 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+    <style>
+    /* Streamlit 默认 progressbar 的蓝色 NASA 渐变 */
+    .stProgress > div > div > div > div {
+        background: linear-gradient(90deg, #001f3f, #003366, #1E90FF);
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# 🌌 CSS 动态星空 + 星云 Nebula + 火箭
+st.markdown("""
+    <style>
+    body {
+        background: black;
+        color: white;
+        overflow: hidden;
+    }
+
+    /* 🌌 星空闪烁 */
+    @keyframes twinkle {
+        from { opacity: 0.2; }
+        to { opacity: 1; }
+    }
+    .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 2s infinite alternate;
+    }
+
+    /* 🌈 Nebula 动态背景 */
+    @keyframes nebulaColors {
+        0% {
+            background: radial-gradient(circle at 20% 20%, rgba(0,191,255,0.3), transparent 40%),
+                        radial-gradient(circle at 80% 30%, rgba(138,43,226,0.3), transparent 40%),
+                        radial-gradient(circle at 50% 70%, rgba(255,20,147,0.3), transparent 40%);
+        }
+        33% {
+            background: radial-gradient(circle at 30% 40%, rgba(255,69,0,0.3), transparent 40%),
+                        radial-gradient(circle at 70% 60%, rgba(255,140,0,0.3), transparent 40%),
+                        radial-gradient(circle at 50% 80%, rgba(255,215,0,0.3), transparent 40%);
+        }
+        66% {
+            background: radial-gradient(circle at 25% 25%, rgba(0,255,127,0.3), transparent 40%),
+                        radial-gradient(circle at 75% 50%, rgba(0,206,209,0.3), transparent 40%),
+                        radial-gradient(circle at 60% 80%, rgba(147,112,219,0.3), transparent 40%);
+        }
+        100% {
+            background: radial-gradient(circle at 20% 20%, rgba(0,191,255,0.3), transparent 40%),
+                        radial-gradient(circle at 80% 30%, rgba(138,43,226,0.3), transparent 40%),
+                        radial-gradient(circle at 50% 70%, rgba(255,20,147,0.3), transparent 40%);
+        }
+    }
+
+    .nebula {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        animation: nebulaColors 20s infinite alternate;
+        z-index: -1;
+    }
+
+    /* 🚀 火箭 */
+    .rocket-container {
+        position: relative;
+        height: 50px;
+        margin-top: 10px;
+    }
+    .rocket {
+        position: absolute;
+        font-size: 28px;
+        transition: left 0.3s linear;
+    }
+
+    /* 🌊 流光进度条 */
+    @keyframes shimmer {
+        0% { background-position: -200px 0; }
+        100% { background-position: 200px 0; }
+    }
+    .stProgress > div > div > div > div {
+        background: linear-gradient(90deg, #001f3f, #003366, #1E90FF, #00BFFF);
+        background-size: 400% 100%;
+        animation: shimmer 2s infinite linear;
+    }
+    </style>
+
+    <!-- 星云层 -->
+    <div class="nebula"></div>
+
+    <!-- 生成随机星星 -->
+    <div>
+        """ + "".join([f'<div class="star" style="top:{np.random.randint(0,100)}%; left:{np.random.randint(0,100)}%; animation-duration:{np.random.uniform(1,3)}s;"></div>' for _ in range(100)]) + """
+    </div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+    <style>
+    .rocket {
+        position: relative;
+        width: 60px;
+        height: 120px;
+        margin: 100px auto;
+        background: silver;
+        border-radius: 30px;
+    }
+
+    /* 火箭头 */
+    .rocket::before {
+        content: '';
+        position: absolute;
+        top: -30px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        background: gray;
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    /* 火箭尾焰 */
+    .flame {
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 60px;
+        border-radius: 50% 50% 50% 50%;
+        animation: flameAnim 1s infinite alternate;
+    }
+
+    /* 火焰渐变动画 */
+    @keyframes flameAnim {
+        0%   { background: radial-gradient(circle at 50% 0%, orange, red, transparent); }
+        25%  { background: radial-gradient(circle at 50% 0%, yellow, orange, transparent); }
+        50%  { background: radial-gradient(circle at 50% 0%, deepskyblue, dodgerblue, transparent); }
+        75%  { background: radial-gradient(circle at 50% 0%, violet, purple, transparent); }
+        100% { background: radial-gradient(circle at 50% 0%, orange, red, transparent); }
+    }
+    </style>
+
+    <!-- 火箭 + 彩色喷射尾焰 -->
+    <div class="rocket">
+        <div class="flame"></div>
+    </div>
+""", unsafe_allow_html=True)
+
 
 # 加载训练好的模型
 model = pickle.load(open("exoplanet_model.pkl", "rb"))
@@ -221,6 +375,7 @@ elif page == "Novice Mode":
     </style>
     """
     st.markdown(page_bg_img, unsafe_allow_html=True)
+
 
     # NASA Logo + 标题
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -418,54 +573,83 @@ elif page == "Researcher Mode":
             elif mode == "Auto Hyperparameter Tuning":
                 st.subheader("🤖 Auto Hyperparameter Tuning with GridSearchCV")
 
-                if st.button("🔍 Run Grid Search"):
+                if st.button("🚀 Train Model"):
                     if len(feature_cols) > 0:
-                        with st.spinner("🚀 Running Grid Search... Exploring hyperparameter galaxies, please hold tight 🌌🛰️"):
+                        # 🚀 火箭动画 + Spinner
+                        rocket_html = """
+                        <style>
+                        .rocket {
+                            position: relative;
+                            width: 60px;
+                            height: 120px;
+                            margin: 50px auto;
+                            background: silver;
+                            border-radius: 30px;
+                        }
+                        .rocket::before {
+                            content: '';
+                            position: absolute;
+                            top: -30px;
+                            left: 10px;
+                            width: 40px;
+                            height: 40px;
+                            background: gray;
+                            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                        }
+                        .flame {
+                            position: absolute;
+                            bottom: -40px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: 30px;
+                            height: 60px;
+                            border-radius: 50%;
+                            animation: flameAnim 1s infinite alternate;
+                        }
+                        @keyframes flameAnim {
+                            0%   { background: radial-gradient(circle at 50% 0%, orange, red, transparent); }
+                            25%  { background: radial-gradient(circle at 50% 0%, yellow, orange, transparent); }
+                            50%  { background: radial-gradient(circle at 50% 0%, deepskyblue, dodgerblue, transparent); }
+                            75%  { background: radial-gradient(circle at 50% 0%, violet, purple, transparent); }
+                            100% { background: radial-gradient(circle at 50% 0%, orange, red, transparent); }
+                        }
+                        </style>
+                        <div class="rocket"><div class="flame"></div></div>
+                        """
+
+                        st.markdown(rocket_html, unsafe_allow_html=True)
+
+                        with st.spinner("🛰️ Training model... Please wait while the rocket explores the data galaxy 🌌"):
+                            import time
+                            time.sleep(2)  # 模拟loading，真实情况会用训练时间
+
                             X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
                             y = data[target_col]
                             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-                            from sklearn.model_selection import GridSearchCV
-
                             if model_choice == "RandomForest":
-                                param_grid = {
-                                    "n_estimators": [100, 200, 300],
-                                    "max_depth": [5, 10, 15],
-                                    "min_samples_split": [2, 5, 10],
-                                    "min_samples_leaf": [1, 2, 4],
-                                }
-                                grid = GridSearchCV(
-                                    RandomForestClassifier(random_state=42),
-                                    param_grid,
-                                    cv=3,
-                                    n_jobs=-1,
-                                    verbose=1
+                                model = RandomForestClassifier(
+                                    n_estimators=n_estimators,
+                                    max_depth=max_depth,
+                                    min_samples_split=min_samples_split,
+                                    min_samples_leaf=min_samples_leaf,
+                                    random_state=42
                                 )
-
-                            else:  # LightGBM
+                            else:
                                 import lightgbm as lgb
-                                param_grid = {
-                                    "n_estimators": [100, 200, 300],
-                                    "max_depth": [-1, 6, 12],
-                                    "learning_rate": [0.01, 0.05, 0.1],
-                                }
-                                grid = GridSearchCV(
-                                    lgb.LGBMClassifier(random_state=42),
-                                    param_grid,
-                                    cv=3,
-                                    n_jobs=-1,
-                                    verbose=1
+                                model = lgb.LGBMClassifier(
+                                    n_estimators=n_estimators,
+                                    max_depth=max_depth,
+                                    learning_rate=learning_rate,
+                                    random_state=42
                                 )
 
-                            grid.fit(X_train, y_train)  # 🔄 这里会触发 spinner
+                            model.fit(X_train, y_train)
 
-                        # 🚀 训练完成后显示结果
-                        st.success(f"🎯 Best Parameters: {grid.best_params_}")
-                        best_model = grid.best_estimator_
-
-                        y_pred = best_model.predict(X_test)
+                        # 🚀 出spinner后显示结果
+                        y_pred = model.predict(X_test)
                         acc = accuracy_score(y_test, y_pred)
-                        st.success(f"✅ Best {model_choice} Accuracy: **{acc:.2f}**")
+                        st.success(f"✅ {model_choice} trained! Accuracy: **{acc:.2f}**")
 
                         import joblib
                         joblib.dump(best_model, "exoplanet_model.pkl")
