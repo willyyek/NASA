@@ -135,6 +135,22 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown("""
+    <style>
+    /* 修改加载圈为白色 */
+    .stSpinner > div {
+        border-top-color: white !important;
+        border-right-color: white !important;
+        border-bottom-color: white !important;
+        border-left-color: transparent !important;
+    }
+    /* 修改loading文字为白色 */
+    .stSpinner > div > div {
+        color: white !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 
 # 加载训练好的模型
 model = pickle.load(open("exoplanet_model.pkl", "rb"))
