@@ -114,6 +114,33 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+
+    /* 表格区域单独样式 */
+    .stDataFrame, .stTable {
+        background-color: #1E1E2F !important; /* 深灰蓝色背景 */
+        color: white !important;              /* 保持白色字体 */
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    /* 表格单元格背景 */
+    .stDataFrame table, .stTable table {
+        background-color: #1E1E2F !important;
+    }
+
+    /* 表格单元格边框 */
+    .stDataFrame th, .stDataFrame td,
+    .stTable th, .stTable td {
+        border: 1px solid #444 !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 
 # 加载训练好的模型
 model = pickle.load(open("exoplanet_model.pkl", "rb"))
