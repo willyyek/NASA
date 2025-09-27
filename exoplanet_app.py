@@ -117,26 +117,23 @@ st.markdown(
 st.markdown(
     """
     <style>
-    /* 全局文字白色 */
-    html, body, [class*="css"] {
-        color: white !important;
-    }
-
-    /* dataframe 背景强制改色 */
+    /* 只针对 dataframe 内部的 grid */
     div[data-testid="stDataFrame"] div[role="grid"] {
-        background-color: #1E1E2F !important;  /* 深灰蓝 */
-        color: white !important;               /* 保持白字 */
+        background-color: #001F3F !important;  /* 深蓝背景 */
+        color: white !important;               /* 白字 */
     }
 
-    /* table 的背景也统一 */
-    div[data-testid="stTable"] {
-        background-color: #1E1E2F !important;
-        color: white !important;
-    }
-
-    /* 单元格边框 */
+    /* 表格格子 */
     div[data-testid="stDataFrame"] div[role="gridcell"] {
-        border: 1px solid #444 !important;
+        background-color: #001F3F !important;
+        color: white !important;
+        border: 1px solid #00BFFF !important;  /* NASA 蓝边框 */
+    }
+
+    /* 列名表头 */
+    div[data-testid="stDataFrame"] div[role="columnheader"] {
+        background-color: #003366 !important;  /* 稍深的蓝色 */
+        color: white !important;
     }
     </style>
     """,
