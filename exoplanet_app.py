@@ -354,28 +354,34 @@ elif page == "Researcher Mode":
 
                 if st.button("🚀 Train Model"):
                     if len(feature_cols) > 0:
-                        X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
-                        y = data[target_col]
-                        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+                        with st.spinner("🛰️ Training model... Please wait while the algorithm orbits the data galaxy 🌌"):
+                            import time
+                            time.sleep(2)  # 这里可以模拟loading，真实情况是训练时间本身
+            
+                            X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
+                            y = data[target_col]
+                            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-                        if model_choice == "RandomForest":
-                            model = RandomForestClassifier(
-                                n_estimators=n_estimators,
-                                max_depth=max_depth,
-                                min_samples_split=min_samples_split,
-                                min_samples_leaf=min_samples_leaf,
-                                random_state=42
-                            )
-                        else:
-                            import lightgbm as lgb
-                            model = lgb.LGBMClassifier(
-                                n_estimators=n_estimators,
-                                max_depth=max_depth,
-                                learning_rate=learning_rate,
-                                random_state=42
-                            )
+                            if model_choice == "RandomForest":
+                                model = RandomForestClassifier(
+                                    n_estimators=n_estimators,
+                                    max_depth=max_depth,
+                                    min_samples_split=min_samples_split,
+                                    min_samples_leaf=min_samples_leaf,
+                                    random_state=42
+                                )
+                            else:
+                                import lightgbm as lgb
+                                model = lgb.LGBMClassifier(
+                                    n_estimators=n_estimators,
+                                    max_depth=max_depth,
+                                    learning_rate=learning_rate,
+                                    random_state=42
+                                )
 
-                        model.fit(X_train, y_train)
+                            model.fit(X_train, y_train)
+
+                        # 🚀 出spinner后显示结果
                         y_pred = model.predict(X_test)
                         acc = accuracy_score(y_test, y_pred)
                         st.success(f"✅ {model_choice} trained! Accuracy: **{acc:.2f}**")
@@ -398,33 +404,46 @@ elif page == "Researcher Mode":
 
                 if st.button("🔍 Run Grid Search"):
                     if len(feature_cols) > 0:
-                        X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
-                        y = data[target_col]
-                        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+                        with st.spinner("🚀 Running Grid Search... Exploring hyperparameter galaxies, please hold tight 🌌🛰️"):
+                            X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
+                            y = data[target_col]
+                            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-                        from sklearn.model_selection import GridSearchCV
+                            from sklearn.model_selection import GridSearchCV
 
-                        if model_choice == "RandomForest":
-                            param_grid = {
-                                "n_estimators": [100, 200, 300],
-                                "max_depth": [5, 10, 15],
-                                "min_samples_split": [2, 5, 10],
-                                "min_samples_leaf": [1, 2, 4],
-                            }
-                            grid = GridSearchCV(RandomForestClassifier(random_state=42),
-                                                param_grid, cv=3, n_jobs=-1, verbose=1)
+                            if model_choice == "RandomForest":
+                                param_grid = {
+                                    "n_estimators": [100, 200, 300],
+                                    "max_depth": [5, 10, 15],
+                                    "min_samples_split": [2, 5, 10],
+                                    "min_samples_leaf": [1, 2, 4],
+                                }
+                                grid = GridSearchCV(
+                                    RandomForestClassifier(random_state=42),
+                                    param_grid,
+                                    cv=3,
+                                    n_jobs=-1,
+                                    verbose=1
+                                )
 
-                        else:  # LightGBM
-                            import lightgbm as lgb
-                            param_grid = {
-                                "n_estimators": [100, 200, 300],
-                                "max_depth": [-1, 6, 12],
-                                "learning_rate": [0.01, 0.05, 0.1],
-                            }
-                            grid = GridSearchCV(lgb.LGBMClassifier(random_state=42),
-                                                param_grid, cv=3, n_jobs=-1, verbose=1)
+                            else:  # LightGBM
+                                import lightgbm as lgb
+                                param_grid = {
+                                    "n_estimators": [100, 200, 300],
+                                    "max_depth": [-1, 6, 12],
+                                    "learning_rate": [0.01, 0.05, 0.1],
+                                }
+                                grid = GridSearchCV(
+                                    lgb.LGBMClassifier(random_state=42),
+                                    param_grid,
+                                    cv=3,
+                                    n_jobs=-1,
+                                    verbose=1
+                                )
 
-                        grid.fit(X_train, y_train)
+                            grid.fit(X_train, y_train)  # 🔄 这里会触发 spinner
+
+                        # 🚀 训练完成后显示结果
                         st.success(f"🎯 Best Parameters: {grid.best_params_}")
                         best_model = grid.best_estimator_
 
