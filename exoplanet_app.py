@@ -117,23 +117,25 @@ st.markdown(
 st.markdown(
     """
     <style>
-
-    /* 表格区域单独样式 */
-    .stDataFrame, .stTable {
-        background-color: #1E1E2F !important; /* 深灰蓝色背景 */
-        color: white !important;              /* 保持白色字体 */
-        border-radius: 10px;
-        padding: 10px;
+    /* 全局文字白色 */
+    html, body, [class*="css"] {
+        color: white !important;
     }
 
-    /* 表格单元格背景 */
-    .stDataFrame table, .stTable table {
+    /* dataframe 背景强制改色 */
+    div[data-testid="stDataFrame"] div[role="grid"] {
+        background-color: #1E1E2F !important;  /* 深灰蓝 */
+        color: white !important;               /* 保持白字 */
+    }
+
+    /* table 的背景也统一 */
+    div[data-testid="stTable"] {
         background-color: #1E1E2F !important;
+        color: white !important;
     }
 
-    /* 表格单元格边框 */
-    .stDataFrame th, .stDataFrame td,
-    .stTable th, .stTable td {
+    /* 单元格边框 */
+    div[data-testid="stDataFrame"] div[role="gridcell"] {
         border: 1px solid #444 !important;
     }
     </style>
