@@ -9,19 +9,19 @@ import pickle
 import joblib
 import numpy as np
 
-# Custom CSS for dark blue header + sidebar
+# Custom CSS for gradient dark blue header + sidebar
 st.markdown(
     """
     <style>
-    /* 顶部导航栏（最上面那条灰色的 Streamlit bar） */
+    /* 顶部导航栏（Header） */
     header[data-testid="stHeader"] {
-        background-color: #001f3f; /* 深蓝色 */
+        background: linear-gradient(90deg, #001f3f, #003366);
         color: white;
     }
 
-    /* 左侧侧边栏 */
+    /* 左侧 Sidebar 渐变 */
     section[data-testid="stSidebar"] {
-        background-color: #003366; /* 浅一点的深蓝色 */
+        background: linear-gradient(180deg, #00264d, #004080);
         color: white;
     }
     </style>
