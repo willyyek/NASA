@@ -9,6 +9,26 @@ import pickle
 import joblib
 import numpy as np
 
+# Custom CSS for dark blue header + sidebar
+st.markdown(
+    """
+    <style>
+    /* 顶部导航栏（最上面那条灰色的 Streamlit bar） */
+    header[data-testid="stHeader"] {
+        background-color: #001f3f; /* 深蓝色 */
+        color: white;
+    }
+
+    /* 左侧侧边栏 */
+    section[data-testid="stSidebar"] {
+        background-color: #003366; /* 浅一点的深蓝色 */
+        color: white;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # 放在 app 开头
 st.markdown(
     """
