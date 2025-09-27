@@ -1,3 +1,21 @@
+# 放在 app 开头
+st.markdown(
+    """
+    <style>
+    /* 设置整个 app 的字体颜色为白色 */
+    .stNumberInput label, .stTextInput label, .stSelectbox label, .stSlider label {
+        color: white !important;
+    }
+    /* 设置普通文字颜色 */
+    .stMarkdown, .stRadio label, .stCheckbox label {
+        color: white !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
 import streamlit as st
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -21,6 +39,28 @@ page = st.sidebar.radio("Go to:", ["Home", "Novice Mode", "Researcher Mode"])
 # --- Home Page ---
 if page == "Home":
     st.title("🚀 NASA Exoplanet Classifier")
+
+    # 设置星空背景
+    page_bg_img = """
+    <style>
+    [data-testid="stAppViewContainer"] {
+        background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    [data-testid="stHeader"] {
+        #background: rgba(0,0,0,0); /* 顶部透明 */
+    }
+
+    [data-testid="stToolbar"] {
+        right: 2rem;
+    }
+    </style>
+    """
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+
     st.subheader("🌌 Galactic Explorer 117")
     st.write("""
     Welcome to our Exoplanet Classifier!  
@@ -31,28 +71,28 @@ if page == "Home":
 
 # --- Novice Mode ---
 elif page == "Novice Mode":
-    st.markdown("<h2 style='text-align: left; color: white;'>🟢 Novice Mode - Quick Classification</h2>", unsafe_allow_html=True)
+    st.header("🟢 Novice Mode - Quick Classification")
 
     # 设置星空背景
-    #page_bg_img = """
-    #<style>
-    #[data-testid="stAppViewContainer"] {
-        #background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
-        #background-size: cover;
-        #background-position: center;
-        #background-repeat: no-repeat;
-    #}
+    page_bg_img = """
+    <style>
+    [data-testid="stAppViewContainer"] {
+        background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
-    #[data-testid="stHeader"] {
+    [data-testid="stHeader"] {
         #background: rgba(0,0,0,0); /* 顶部透明 */
-    #}
+    }
 
-    #[data-testid="stToolbar"] {
-        #right: 2rem;
-    #}
-    #</style>
-    #"""
-    #st.markdown(page_bg_img, unsafe_allow_html=True)
+    [data-testid="stToolbar"] {
+        right: 2rem;
+    }
+    </style>
+    """
+    st.markdown(page_bg_img, unsafe_allow_html=True)
 
     # NASA Logo + 标题
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -63,7 +103,7 @@ elif page == "Novice Mode":
     with col3:
         st.image("https://github.com/chengkiet2020-byte/exoplanet-app/blob/main/logo.png?raw=true", width=410)
 
-    st.markdown("<h1 style='text-align: center; color: white;'>🚀 NASA Exoplanet Classifier</h1>", unsafe_allow_html=True)
+    st.title("🚀 NASA Exoplanet Classifier")
     st.write("<h3 style='text-align: center; color: white;'>Analyze Kepler exoplanet data and classify candidates into Confirmed, Candidate, or False Positive</h3>", unsafe_allow_html=True)
 
     # 用户输入
@@ -112,6 +152,28 @@ elif page == "Novice Mode":
 # --- Researcher Mode ---
 elif page == "Researcher Mode":
     st.header("🔬 Researcher Mode - Advanced Tools")
+
+    # 设置星空背景
+    page_bg_img = """
+    <style>
+    [data-testid="stAppViewContainer"] {
+        background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    [data-testid="stHeader"] {
+        #background: rgba(0,0,0,0); /* 顶部透明 */
+    }
+
+    [data-testid="stToolbar"] {
+        right: 2rem;
+    }
+    </style>
+    """
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+
     st.write("Here you can upload new datasets, retrain the model, and analyze accuracy.")
 
     uploaded_file = st.file_uploader("📂 Upload dataset", type=["csv", "txt", "tsv", "xlsx"])
