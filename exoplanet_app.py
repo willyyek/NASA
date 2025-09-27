@@ -95,6 +95,23 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    a {
+        color: #00BFFF !important;   /* NASA 蓝色 */
+        text-decoration: none;       /* 去掉默认下划线 */
+        font-weight: bold;           /* 让链接更醒目（可选） */
+    }
+    a:hover {
+        color: #33CCFF !important;   /* 鼠标悬停时更亮的蓝色 */
+        text-decoration: underline;  /* 悬停时加下划线 */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 
 # 加载训练好的模型
 model = pickle.load(open("exoplanet_model.pkl", "rb"))
@@ -253,8 +270,8 @@ elif page == "Researcher Mode":
         <style>
         /* File uploader 外框 */
         [data-testid="stFileUploader"] section {
-            background-color: #000000;   /* 黑色背景 */
-            border: 1px solid #444444;   /* 灰色边框 */
+            background-color: #001f3f;   /* 深蓝色背景 */
+            border: 1px solid #00BFFF;   /* 浅蓝色边框 */
             border-radius: 8px;
         }
 
