@@ -137,14 +137,16 @@ st.markdown(
 
 st.markdown("""
     <style>
-    /* 让 spinner 圈变成白色 */
-    div[data-testid="stSpinner"] div[role="status"] svg {
-        stroke: white !important;
+    /* 让 Streamlit spinner 圈圈变成白色 */
+    div[data-testid="stSpinner"] div[role="status"]::before {
+        border: 0.25em solid rgba(255, 255, 255, 0.2) !important;  /* 半透明外圈 */
+        border-top: 0.25em solid white !important;                 /* 白色高亮圈 */
     }
 
-    /* 修改 spinner 文字为白色 */
+    /* Spinner 的文字颜色 */
     div[data-testid="stSpinner"] div[role="status"] p {
         color: white !important;
+        font-weight: bold;
     }
     </style>
 """, unsafe_allow_html=True)
