@@ -187,10 +187,7 @@ elif page == "Novice Mode":
     col1, col2, col3 = st.columns([1, 2, 1])
 
     with col1:
-        st.image("https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg", width=320)
-
-    with col3:
-        st.image("https://github.com/chengkiet2020-byte/exoplanet-app/blob/main/logo.png?raw=true", width=410)
+        st.image("https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg", width=120)
 
     st.title("🚀 NASA Exoplanet Classifier")
     st.write("<h3 style='text-align: center; color: white;'>Analyze Kepler exoplanet data and classify candidates into Confirmed, Candidate, or False Positive</h3>", unsafe_allow_html=True)
