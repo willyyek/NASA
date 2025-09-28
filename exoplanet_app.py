@@ -164,146 +164,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 🌌 CSS 动态星空 + 星云 Nebula + 火箭
-st.markdown("""
-    <style>
-    body {
-        background: black;
-        color: white;
-        overflow: hidden;
-    }
 
-    /* 🌌 星空闪烁 */
-    @keyframes twinkle {
-        from { opacity: 0.2; }
-        to { opacity: 1; }
-    }
-    .star {
-        position: absolute;
-        width: 2px;
-        height: 2px;
-        background: white;
-        border-radius: 50%;
-        animation: twinkle 2s infinite alternate;
-    }
-
-    /* 🌈 Nebula 动态背景 */
-    @keyframes nebulaColors {
-        0% {
-            background: radial-gradient(circle at 20% 20%, rgba(0,191,255,0.3), transparent 40%),
-                        radial-gradient(circle at 80% 30%, rgba(138,43,226,0.3), transparent 40%),
-                        radial-gradient(circle at 50% 70%, rgba(255,20,147,0.3), transparent 40%);
-        }
-        33% {
-            background: radial-gradient(circle at 30% 40%, rgba(255,69,0,0.3), transparent 40%),
-                        radial-gradient(circle at 70% 60%, rgba(255,140,0,0.3), transparent 40%),
-                        radial-gradient(circle at 50% 80%, rgba(255,215,0,0.3), transparent 40%);
-        }
-        66% {
-            background: radial-gradient(circle at 25% 25%, rgba(0,255,127,0.3), transparent 40%),
-                        radial-gradient(circle at 75% 50%, rgba(0,206,209,0.3), transparent 40%),
-                        radial-gradient(circle at 60% 80%, rgba(147,112,219,0.3), transparent 40%);
-        }
-        100% {
-            background: radial-gradient(circle at 20% 20%, rgba(0,191,255,0.3), transparent 40%),
-                        radial-gradient(circle at 80% 30%, rgba(138,43,226,0.3), transparent 40%),
-                        radial-gradient(circle at 50% 70%, rgba(255,20,147,0.3), transparent 40%);
-        }
-    }
-
-    .nebula {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        animation: nebulaColors 20s infinite alternate;
-        z-index: -1;
-    }
-
-    /* 🚀 火箭 */
-    .rocket-container {
-        position: relative;
-        height: 50px;
-        margin-top: 10px;
-    }
-    .rocket {
-        position: absolute;
-        font-size: 28px;
-        transition: left 0.3s linear;
-    }
-
-    /* 🌊 流光进度条 */
-    @keyframes shimmer {
-        0% { background-position: -200px 0; }
-        100% { background-position: 200px 0; }
-    }
-    .stProgress > div > div > div > div {
-        background: linear-gradient(90deg, #001f3f, #003366, #1E90FF, #00BFFF);
-        background-size: 400% 100%;
-        animation: shimmer 2s infinite linear;
-    }
-    </style>
-
-    <!-- 星云层 -->
-    <div class="nebula"></div>
-
-    <!-- 生成随机星星 -->
-    <div>
-        """ + "".join([f'<div class="star" style="top:{np.random.randint(0,100)}%; left:{np.random.randint(0,100)}%; animation-duration:{np.random.uniform(1,3)}s;"></div>' for _ in range(100)]) + """
-    </div>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-    <style>
-    .rocket {
-        position: relative;
-        width: 60px;
-        height: 120px;
-        margin: 100px auto;
-        background: silver;
-        border-radius: 30px;
-    }
-
-    /* 火箭头 */
-    .rocket::before {
-        content: '';
-        position: absolute;
-        top: -30px;
-        left: 10px;
-        width: 40px;
-        height: 40px;
-        background: gray;
-        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    }
-
-    /* 火箭尾焰 */
-    .flame {
-        position: absolute;
-        bottom: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 30px;
-        height: 60px;
-        border-radius: 50% 50% 50% 50%;
-        animation: flameAnim 1s infinite alternate;
-    }
-
-    /* 火焰渐变动画 */
-    @keyframes flameAnim {
-        0%   { background: radial-gradient(circle at 50% 0%, orange, red, transparent); }
-        25%  { background: radial-gradient(circle at 50% 0%, yellow, orange, transparent); }
-        50%  { background: radial-gradient(circle at 50% 0%, deepskyblue, dodgerblue, transparent); }
-        75%  { background: radial-gradient(circle at 50% 0%, violet, purple, transparent); }
-        100% { background: radial-gradient(circle at 50% 0%, orange, red, transparent); }
-    }
-    </style>
-
-    <!-- 火箭 + 彩色喷射尾焰 -->
-    <div class="rocket">
-        <div class="flame"></div>
-    </div>
-""", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
@@ -606,6 +467,30 @@ elif page == "Researcher Mode":
 
                 if st.button("🚀 Train Model"):
                     if len(feature_cols) > 0:
+
+                        # 🌌 CSS 动态星空 + 星云 Nebula + 火箭
+                        st.markdown("""
+                            <style>
+                            body {
+                                background: black;
+                                color: white;
+                                overflow: hidden;
+                            }
+
+                            /* 🌊 流光进度条 */
+                            @keyframes shimmer {
+                                0% { background-position: -200px 0; }
+                                100% { background-position: 200px 0; }
+                            }
+                            .stProgress > div > div > div > div {
+                                background: linear-gradient(90deg, #001f3f, #003366, #1E90FF, #00BFFF);
+                                background-size: 400% 100%;
+                                animation: shimmer 2s infinite linear;
+                            }
+                            </style>
+
+                        """, unsafe_allow_html=True)
+
                         # 🚀 火箭动画 + Spinner
                         rocket_html = """
                         <style>
