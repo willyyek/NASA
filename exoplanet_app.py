@@ -373,19 +373,30 @@ if page == "Home":
 
     page_bg_video = """
     <style>
-    .bgvideo {
+    .stApp {
+        background: transparent !important; /* 去掉默认背景 */
+    }
+    video#bgvid {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        object-fit: cover;
         z-index: -1;
-        border: none;
-        pointer-events: none;
+        pointer-events: none;  /* 禁止鼠标事件，避免误点 */
+    }
+    video::-webkit-media-controls {
+        display: none !important;  /* 隐藏控制栏 (Chrome, Edge, Safari) */
+    }
+    video::-moz-media-controls {
+        display: none !important;  /* 隐藏控制栏 (Firefox) */
     }
     </style>
 
-    <iframe class="bgvideo" src="https://willyyek.github.io/NASA/exoscan117.mp4" allow="autoplay"></iframe>
+    <video autoplay muted loop playsinline id="bgvid">
+        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
+    </video>
     """
     st.markdown(page_bg_video, unsafe_allow_html=True)
 
@@ -407,19 +418,30 @@ elif page == "Novice Mode":
     # 设置星空背景
     page_bg_video = """
     <style>
-    .bgvideo {
+    .stApp {
+        background: transparent !important; /* 去掉默认背景 */
+    }
+    video#bgvid {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        object-fit: cover;
         z-index: -1;
-        border: none;
-        pointer-events: none;
+        pointer-events: none;  /* 禁止鼠标事件，避免误点 */
+    }
+    video::-webkit-media-controls {
+        display: none !important;  /* 隐藏控制栏 (Chrome, Edge, Safari) */
+    }
+    video::-moz-media-controls {
+        display: none !important;  /* 隐藏控制栏 (Firefox) */
     }
     </style>
 
-    <iframe class="bgvideo" src="https://willyyek.github.io/NASA/exoscan117.mp4" allow="autoplay"></iframe>
+    <video autoplay muted loop playsinline id="bgvid">
+        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
+    </video>
     """
     st.markdown(page_bg_video, unsafe_allow_html=True)
 
@@ -484,19 +506,30 @@ elif page == "Researcher Mode":
     # 设置星空背景
     page_bg_video = """
     <style>
-    .bgvideo {
+    .stApp {
+        background: transparent !important; /* 去掉默认背景 */
+    }
+    video#bgvid {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        object-fit: cover;
         z-index: -1;
-        border: none;
-        pointer-events: none;
+        pointer-events: none;  /* 禁止鼠标事件，避免误点 */
+    }
+    video::-webkit-media-controls {
+        display: none !important;  /* 隐藏控制栏 (Chrome, Edge, Safari) */
+    }
+    video::-moz-media-controls {
+        display: none !important;  /* 隐藏控制栏 (Firefox) */
     }
     </style>
 
-    <iframe class="bgvideo" src="https://willyyek.github.io/NASA/exoscan117.mp4" allow="autoplay"></iframe>
+    <video autoplay muted loop playsinline id="bgvid">
+        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
+    </video>
     """
     st.markdown(page_bg_video, unsafe_allow_html=True)
 
