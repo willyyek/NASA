@@ -456,48 +456,53 @@ elif page == "Novice Mode":
     st.title("🚀 NASA Exoplanet Classifier")
     st.write("<h4 style='text-align: center; color: white;'>Analyze Kepler exoplanet data and classify candidates into Confirmed, Candidate, or False Positive</h4>", unsafe_allow_html=True)
 
-    # 用户输入
-    koi_period = st.number_input("Enter Orbital Period (days)", min_value=0.0, step=0.1, value=10.0)
-    koi_prad = st.number_input("Enter Planetary Radius (Earth radii)", min_value=0.0, step=0.1, value=1.0)
-    koi_duration = st.number_input("Enter Transit Duration (hours)", min_value=0.0, step=0.1, value=5.0)
-    koi_depth = st.number_input("Enter Transit Depth (ppm)", min_value=0.0, step=0.1, value=100.0)
-    koi_steff = st.number_input("Enter Stellar Effective Temperature (K)", min_value=0.0, step=100.0, value=5500.0)
-    koi_srad = st.number_input("Enter Stellar Radius (Solar radii)", min_value=0.0, step=0.1, value=1.0)
-    koi_smass = st.number_input("Enter Stellar Mass (Solar masses)", min_value=0.0, step=0.1, value=1.0)
+    # 页面分为两列
+    col_input, col_result = st.columns([2, 1])  # 左边宽一些，右边窄一些
 
-    # 预测按钮
-    if st.button("🔍 Predict Exoplanet"):
-        features = np.array([[koi_period, koi_prad, koi_duration, koi_depth, koi_steff, koi_srad, koi_smass]])
-        prediction = model.predict(features)[0]
+    with col_input:
+        st.subheader("🔢 Input Parameters")
+        koi_period = st.number_input("Enter Orbital Period (days)", min_value=0.0, step=0.1, value=10.0)
+        koi_prad = st.number_input("Enter Planetary Radius (Earth radii)", min_value=0.0, step=0.1, value=1.0)
+        koi_duration = st.number_input("Enter Transit Duration (hours)", min_value=0.0, step=0.1, value=5.0)
+        koi_depth = st.number_input("Enter Transit Depth (ppm)", min_value=0.0, step=0.1, value=100.0)
+        koi_steff = st.number_input("Enter Stellar Effective Temperature (K)", min_value=0.0, step=100.0, value=5500.0)
+        koi_srad = st.number_input("Enter Stellar Radius (Solar radii)", min_value=0.0, step=0.1, value=1.0)
+        koi_smass = st.number_input("Enter Stellar Mass (Solar masses)", min_value=0.0, step=0.1, value=1.0)
 
-        nasa_logo_url = "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"
+    with col_result:
+        st.subheader("🚀 Prediction Result")
+        if st.button("🔍 Predict Exoplanet"):
+            features = np.array([[koi_period, koi_prad, koi_duration, koi_depth, koi_steff, koi_srad, koi_smass]])
+            prediction = model.predict(features)[0]
 
-        if prediction == "CONFIRMED":
-            st.image(nasa_logo_url, width=80)  # 显示NASA logo
-            st.success("✅ This is a **Confirmed Exoplanet**!")
-            st.markdown("""
-            **Explanation:**  
-            - A confirmed exoplanet has been validated by astronomers using multiple methods.  
-            - It is officially recognized in NASA’s confirmed planet catalog.  
-            """)
+            nasa_logo_url = "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"
 
-        elif prediction == "CANDIDATE":
-            st.image(nasa_logo_url, width=80)
-            st.warning("🟡 This is a **Planet Candidate**, further validation required.")
-            st.markdown("""
-            **Explanation:**  
-            - A planet candidate shows signs of being a planet but has not yet been fully confirmed.  
-            - Further observation or analysis is required to rule out false signals.  
-            """)
+            if prediction == "CONFIRMED":
+                st.image(nasa_logo_url, width=80)
+                st.success("✅ This is a **Confirmed Exoplanet**!")
+                st.markdown("""
+                **Explanation:**  
+                - A confirmed exoplanet has been validated by astronomers using multiple methods.  
+                - It is officially recognized in NASA’s confirmed planet catalog.  
+                """)
 
-        else:
-            st.image(nasa_logo_url, width=80)
-            st.error("❌ This is a **False Positive**.")
-            st.markdown("""
-            **Explanation:**  
-            - A false positive means the signal is not caused by a planet.  
-            - It could be due to noise, binary stars, or stellar activity instead of an exoplanet.  
-            """)
+            elif prediction == "CANDIDATE":
+                st.image(nasa_logo_url, width=80)
+                st.warning("🟡 This is a **Planet Candidate**, further validation required.")
+                st.markdown("""
+                **Explanation:**  
+                - A planet candidate shows signs of being a planet but has not yet been fully confirmed.  
+                - Further observation or analysis is required to rule out false signals.  
+                """)
+
+            else:
+                st.image(nasa_logo_url, width=80)
+                st.error("❌ This is a **False Positive**.")
+                st.markdown("""
+                **Explanation:**  
+                - A false positive means the signal is not caused by a planet.  
+                - It could be due to noise, binary stars, or stellar activity instead of an exoplanet.  
+                """)
 
 # --- Researcher Mode ---
 elif page == "Researcher Mode":
