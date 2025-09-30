@@ -13,6 +13,41 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import numpy as np
 
+
+page_bg_video = """
+<style>
+.stApp {
+    background: transparent !important;
+}
+video#bgvid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+}
+</style>
+
+<script>
+const existing = document.getElementById("bgvid");
+if (!existing) {
+    var video = document.createElement("video");
+    video.id = "bgvid";
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.innerHTML = '<source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">';
+    document.body.appendChild(video);
+}
+</script>
+"""
+st.markdown(page_bg_video, unsafe_allow_html=True)
+
+
 # Custom CSS for gradient dark blue header + sidebar
 st.markdown(
     """
@@ -338,20 +373,19 @@ if page == "Home":
 
     page_bg_video = """
     <style>
-    video#bgvid {
+    .bgvideo {
         position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        object-fit: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         z-index: -1;
+        border: none;
+        pointer-events: none;
     }
     </style>
 
-    <video autoplay muted loop playsinline id="bgvid">
-        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
-    </video>
+    <iframe class="bgvideo" src="https://willyyek.github.io/NASA/exoscan117.mp4" allow="autoplay"></iframe>
     """
     st.markdown(page_bg_video, unsafe_allow_html=True)
 
@@ -373,22 +407,22 @@ elif page == "Novice Mode":
     # 设置星空背景
     page_bg_video = """
     <style>
-    video#bgvid {
+    .bgvideo {
         position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        object-fit: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         z-index: -1;
+        border: none;
+        pointer-events: none;
     }
     </style>
 
-    <video autoplay muted loop playsinline id="bgvid">
-        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
-    </video>
+    <iframe class="bgvideo" src="https://willyyek.github.io/NASA/exoscan117.mp4" allow="autoplay"></iframe>
     """
     st.markdown(page_bg_video, unsafe_allow_html=True)
+
 
 
     # NASA Logo + 标题
@@ -450,22 +484,22 @@ elif page == "Researcher Mode":
     # 设置星空背景
     page_bg_video = """
     <style>
-    video#bgvid {
+    .bgvideo {
         position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        object-fit: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         z-index: -1;
+        border: none;
+        pointer-events: none;
     }
     </style>
 
-    <video autoplay muted loop playsinline id="bgvid">
-        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
-    </video>
+    <iframe class="bgvideo" src="https://willyyek.github.io/NASA/exoscan117.mp4" allow="autoplay"></iframe>
     """
     st.markdown(page_bg_video, unsafe_allow_html=True)
+
 
     st.write("Here you can upload new datasets, retrain the model, and analyze accuracy.")
 
