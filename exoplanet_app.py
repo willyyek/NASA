@@ -346,7 +346,6 @@ if page == "Home":
         min-height: 100%;
         object-fit: cover;
         z-index: -1;
-        pointer-events: none;  /* 防止用户交互影响播放 */
     }
     </style>
 
@@ -382,7 +381,6 @@ elif page == "Novice Mode":
         min-height: 100%;
         object-fit: cover;
         z-index: -1;
-        pointer-events: none;  /* 防止用户交互影响播放 */
     }
     </style>
 
@@ -460,7 +458,6 @@ elif page == "Researcher Mode":
         min-height: 100%;
         object-fit: cover;
         z-index: -1;
-        pointer-events: none;  /* 防止用户交互影响播放 */
     }
     </style>
 
