@@ -457,7 +457,7 @@ elif page == "Novice Mode":
     st.write("<h4 style='text-align: center; color: white;'>Analyze Kepler exoplanet data and classify candidates into Confirmed, Candidate, or False Positive</h4>", unsafe_allow_html=True)
 
     # 页面分为两列
-    col_input, col_result = st.columns([2, 1])  # 左边宽一些，右边窄一些
+    col_input, col_nothing, col_result = st.columns([3, 1, 3])  # 左边宽一些，右边窄一些
 
     with col_input:
         st.subheader("🔢 Input Parameters")
