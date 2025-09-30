@@ -369,8 +369,8 @@ elif page == "Novice Mode":
     }
     </style>
 
-    <video autoplay muted loop id="bgvid">
-        <source src="https://raw.githubusercontent.com/willyyek/NASA/main/exoscan117.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline id="bgvid">
+        <source src="https://cdn.jsdelivr.net/gh/willyyek/NASA@main/exoscan117.mp4" type="video/mp4">
     </video>
     """
 
