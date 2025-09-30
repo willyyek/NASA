@@ -499,9 +499,77 @@ elif page == "Researcher Mode":
 
                 if st.button("🚀 Train Model"):
                     if len(feature_cols) > 0:
-                        with st.spinner("🛰️ Training model... Please wait while the algorithm orbits the data galaxy 🌌"):
+
+                        # 🌌 CSS 动态星空 + 星云 Nebula + 火箭
+                        st.markdown("""
+                            <style>
+                            body {
+                                background: black;
+                                color: white;
+                                overflow: hidden;
+                            }
+
+                            /* 🌊 流光进度条 */
+                            @keyframes shimmer {
+                                0% { background-position: -200px 0; }
+                                100% { background-position: 200px 0; }
+                            }
+                            .stProgress > div > div > div > div {
+                                background: linear-gradient(90deg, #001f3f, #003366, #1E90FF, #00BFFF);
+                                background-size: 400% 100%;
+                                animation: shimmer 2s infinite linear;
+                            }
+                            </style>
+
+                        """, unsafe_allow_html=True)
+
+                        # 🚀 火箭动画 + Spinner
+                        rocket_html = """
+                        <style>
+                        .rocket {
+                            position: relative;
+                            width: 60px;
+                            height: 120px;
+                            margin: 50px auto;
+                            background: silver;
+                            border-radius: 30px;
+                        }
+                        .rocket::before {
+                            content: '';
+                            position: absolute;
+                            top: -30px;
+                            left: 10px;
+                            width: 40px;
+                            height: 40px;
+                            background: gray;
+                            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                        }
+                        .flame {
+                            position: absolute;
+                            bottom: -40px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: 30px;
+                            height: 60px;
+                            border-radius: 50%;
+                            animation: flameAnim 1s infinite alternate;
+                        }
+                        @keyframes flameAnim {
+                            0%   { background: radial-gradient(circle at 50% 0%, orange, red, transparent); }
+                            25%  { background: radial-gradient(circle at 50% 0%, yellow, orange, transparent); }
+                            50%  { background: radial-gradient(circle at 50% 0%, deepskyblue, dodgerblue, transparent); }
+                            75%  { background: radial-gradient(circle at 50% 0%, violet, purple, transparent); }
+                            100% { background: radial-gradient(circle at 50% 0%, orange, red, transparent); }
+                        }
+                        </style>
+                        <div class="rocket"><div class="flame"></div></div>
+                        """
+
+                        st.markdown(rocket_html, unsafe_allow_html=True)
+
+                        with st.spinner("🛰️ Training model... Please wait while the rocket explores the data galaxy 🌌"):
                             import time
-                            time.sleep(2)  # 这里可以模拟loading，真实情况是训练时间本身
+                            time.sleep(2)  # 模拟loading，真实情况会用训练时间
             
                             X = data[feature_cols].select_dtypes(include=['number']).fillna(0)
                             y = data[target_col]
