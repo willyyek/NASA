@@ -359,18 +359,18 @@ elif page == "Novice Mode":
     <style>
     #bgvid {
         position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        z-index: -1;  
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        z-index: -9999;
         background: black;
     }
     </style>
 
     <video autoplay muted loop playsinline id="bgvid">
-        <source src="https://cdn.jsdelivr.net/gh/willyyek/NASA@main/exoscan117.mp4" type="video/mp4">
+        <source src="https://drive.google.com/uc?export=download&id=16b2llvXIJ9tCGgcARmYN4ja6tWfKSO-V" type="video/mp4">
     </video>
     """
 
