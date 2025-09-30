@@ -108,17 +108,17 @@ st.markdown("""
 <style>
 /* Title (st.title 或 markdown #) */
 h1 {
-    font-size: 40px !important;
+    font-size: 50px !important;
 }
 
 /* Header (st.header 或 markdown ##) */
 h2 {
-    font-size: 30px !important;
+    font-size: 40px !important;
 }
 
 /* Subheader (st.subheader 或 markdown ###) */
 h3 {
-    font-size: 26px !important;
+    font-size: 32px !important;
 }
 
 /* 普通 markdown 文本（p, span, div 内文字） */
@@ -313,7 +313,7 @@ model = pickle.load(open("exoplanet_model.pkl", "rb"))
 st.set_page_config(page_title="🚀 NASA Exoplanet Classifier", layout="wide")
 
 # --- Sidebar navigation ---
-st.sidebar.title("🔭 Navigation")
+st.sidebar.subheader("🔭 Navigation")
 page = st.sidebar.radio("Go to:", ["Home", "Novice Mode", "Researcher Mode"])
 
 # --- Home Page ---
@@ -383,7 +383,7 @@ elif page == "Novice Mode":
         st.image("https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg", width=120)
 
     st.title("🚀 NASA Exoplanet Classifier")
-    st.write("<h3 style='text-align: center; color: white;'>Analyze Kepler exoplanet data and classify candidates into Confirmed, Candidate, or False Positive</h3>", unsafe_allow_html=True)
+    st.write("<h4 style='text-align: center; color: white;'>Analyze Kepler exoplanet data and classify candidates into Confirmed, Candidate, or False Positive</h4>", unsafe_allow_html=True)
 
     # 用户输入
     koi_period = st.number_input("Enter Orbital Period (days)", min_value=0.0, step=0.1, value=10.0)
