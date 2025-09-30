@@ -711,7 +711,7 @@ elif page == "Researcher Mode":
                         st.success(f"✅ {model_choice} trained! Accuracy: **{acc:.2f}**")
 
                         import joblib
-                        joblib.dump(model, "exoplanet_model.pkl")
+                        joblib.dump(model, "exoplanet_model_fake.pkl")
                         st.info("💾 Model saved as `exoplanet_model.pkl`")
 
                         st.subheader("📊 Classification Report")
@@ -856,3 +856,4 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
