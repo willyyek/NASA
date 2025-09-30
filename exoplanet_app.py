@@ -326,7 +326,7 @@ st.markdown(
 )
 
 # --- Novice Mode ---
-elif page == "Novice Mode":
+if page == "Novice Mode":
     st.header("🟢 Novice Mode - Quick Classification")
 
     # 设置星空背景
