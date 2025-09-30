@@ -370,7 +370,7 @@ elif page == "Novice Mode":
     </style>
 
     <video autoplay muted loop id="bgvid">
-        <source src="https://static.moewalls.com/videos/preview/2024/colorful-smoke-planet-preview.webm" type="video/webm">
+        <source src="https://static.moewalls.com/videos/preview/2024/colorful-smoke-planet-preview.webm" type="video/mp4">
     </video>
     """
 
