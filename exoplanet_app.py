@@ -295,38 +295,38 @@ page = st.sidebar.radio("Go to:", ["Home", "Novice Mode", "Researcher Mode"])
 if page == "Home":
     st.title("🚀 NASA Exoplanet Classifier")
 
-page_bg_img = """
-<style>
-[data-testid="stAppViewContainer"] {
-    background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-[data-testid="stHeader"] {
-    background: rgba(0,0,0,0); /* 顶部透明 */
-}
-[data-testid="stToolbar"] {
-    right: 2rem;
-}
-</style>
-"""
-
-st.markdown(page_bg_img, unsafe_allow_html=True)
-
-st.subheader("🌌 Galactic Explorer 117")
-st.markdown(
+    page_bg_img = """
+    <style>
+    [data-testid="stAppViewContainer"] {
+        background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+        [data-testid="stHeader"] {
+        background: rgba(0,0,0,0); /* 顶部透明 */
+    }
+    [data-testid="stToolbar"] {
+        right: 2rem;
+    }
+    </style>
     """
-    Welcome to our Exoplanet Classifier!  
-    Choose one of the modes from the sidebar:
-    - **Novice Mode** 🟢 : For beginners, explore planets by entering basic parameters. (Default dataset: 🔗 <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">NASA Kepler Objects of Interest(KOI)</a>)
-    - **Researcher Mode** 🔬 : For advanced users, upload datasets, train models, and analyze results.  
-    """,
-    unsafe_allow_html=True
-)
+
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+
+    st.subheader("🌌 Galactic Explorer 117")
+    st.markdown(
+        """
+        Welcome to our Exoplanet Classifier!  
+        Choose one of the modes from the sidebar:
+        - **Novice Mode** 🟢 : For beginners, explore planets by entering basic parameters. (Default dataset: 🔗 <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-    bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">NASA Kepler Objects of Interest(KOI)</a>)
+        - **Researcher Mode** 🔬 : For advanced users, upload datasets, train models, and analyze results.  
+        """,
+        unsafe_allow_html=True
+    )
 
 # --- Novice Mode ---
-if page == "Novice Mode":
+elif page == "Novice Mode":
     st.header("🟢 Novice Mode - Quick Classification")
 
     # 设置星空背景
