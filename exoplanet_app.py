@@ -359,18 +359,18 @@ elif page == "Novice Mode":
     <style>
     #bgvid {
         position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        z-index: -1;
-        object-fit: cover;
-        background: black;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;  
+        z-index: -1;  
+        background: black; /* 避免空白时闪烁 */
     }
     </style>
 
-    <video autoplay muted loop id="bgvid">
-        <source src="https://static.moewalls.com/videos/preview/2024/colorful-smoke-planet-preview.webm" type="video/mp4">
+    <video autoplay muted loop playsinline id="bgvid">
+        <source src="https://static.moewalls.com/videos/preview/2024/colorful-smoke-planet-preview.webm" type="video/webm">
     </video>
     """
 
