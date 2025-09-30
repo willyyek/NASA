@@ -373,23 +373,22 @@ elif page == "Novice Mode":
     # 设置星空背景
     page_bg_video = """
     <style>
-    #bgvid {
+    video#bgvid {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
         object-fit: cover;
         z-index: -1;
-        background: black;
+        pointer-events: none;  /* 防止用户交互影响播放 */
     }
     </style>
 
     <video autoplay muted loop playsinline id="bgvid">
-        <source src="https://willyyek.github.io/NASA/video/exoscan117.mp4" type="video/mp4">
+        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
     </video>
     """
-
     st.markdown(page_bg_video, unsafe_allow_html=True)
 
 
