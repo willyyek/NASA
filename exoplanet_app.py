@@ -305,7 +305,7 @@ if page == "Home":
     }
 
     [data-testid="stHeader"] {
-        #background: rgba(0,0,0,0); /* 顶部透明 */
+        background: rgba(0,0,0,0); /* 顶部透明 */
     }
 
     [data-testid="stToolbar"] {
