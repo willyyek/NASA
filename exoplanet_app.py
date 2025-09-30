@@ -104,6 +104,31 @@ div[data-baseweb="menu"] div[role="listbox"] div[role="option"] {
 """, unsafe_allow_html=True)
 
 
+st.markdown("""
+<style>
+/* Title (st.title 或 markdown #) */
+h1 {
+    font-size: 40px !important;
+}
+
+/* Header (st.header 或 markdown ##) */
+h2 {
+    font-size: 30px !important;
+}
+
+/* Subheader (st.subheader 或 markdown ###) */
+h3 {
+    font-size: 26px !important;
+}
+
+/* 普通 markdown 文本（p, span, div 内文字） */
+p, div, span, label {
+    font-size: 20px !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 # 放在 app 开头
 st.markdown(
     """
