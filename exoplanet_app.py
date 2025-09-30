@@ -380,7 +380,7 @@ elif page == "Novice Mode":
         width: 100%;
         height: 100%;
         object-fit: cover;
-        z-index: -9999;
+        z-index: -1;
         background: black;
     }
     </style>
