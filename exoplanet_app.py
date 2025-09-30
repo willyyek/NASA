@@ -336,24 +336,25 @@ page = st.sidebar.radio("Go to:", ["Home", "Novice Mode", "Researcher Mode"])
 if page == "Home":
     st.title("🚀 NASA Exoplanet Classifier")
 
-    page_bg_img = """
+    page_bg_video = """
     <style>
-    [data-testid="stAppViewContainer"] {
-        background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-        [data-testid="stHeader"] {
-        background: rgba(0,0,0,0); /* 顶部透明 */
-    }
-    [data-testid="stToolbar"] {
-        right: 2rem;
+    video#bgvid {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        pointer-events: none;  /* 防止用户交互影响播放 */
     }
     </style>
-    """
 
-    st.markdown(page_bg_img, unsafe_allow_html=True)
+    <video autoplay muted loop playsinline id="bgvid">
+        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
+    </video>
+    """
+    st.markdown(page_bg_video, unsafe_allow_html=True)
 
     st.subheader("🌌 Galactic Explorer 117")
     st.markdown(
@@ -449,25 +450,25 @@ elif page == "Researcher Mode":
     st.header("🔬 Researcher Mode - Advanced Tools")
 
     # 设置星空背景
-    page_bg_img = """
+    page_bg_video = """
     <style>
-    [data-testid="stAppViewContainer"] {
-        background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-    [data-testid="stHeader"] {
-        #background: rgba(0,0,0,0); /* 顶部透明 */
-    }
-
-    [data-testid="stToolbar"] {
-        right: 2rem;
+    video#bgvid {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        pointer-events: none;  /* 防止用户交互影响播放 */
     }
     </style>
+
+    <video autoplay muted loop playsinline id="bgvid">
+        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
+    </video>
     """
-    st.markdown(page_bg_img, unsafe_allow_html=True)
+    st.markdown(page_bg_video, unsafe_allow_html=True)
 
     st.write("Here you can upload new datasets, retrain the model, and analyze accuracy.")
 
