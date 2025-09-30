@@ -40,7 +40,7 @@ if (!existing) {
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
-    video.innerHTML = '<source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">';
+    video.innerHTML = '<source src="https://willyyek.github.io/NASA/video/exoscan117.mp4" type="video/mp4">';
     document.body.appendChild(video);
 }
 </script>
@@ -395,7 +395,7 @@ if page == "Home":
     </style>
 
     <video autoplay muted loop playsinline id="bgvid">
-        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
+        <source src="https://willyyek.github.io/NASA/video/exoscan117.mp4" type="video/mp4">
     </video>
     """
     st.markdown(page_bg_video, unsafe_allow_html=True)
@@ -440,7 +440,7 @@ elif page == "Novice Mode":
     </style>
 
     <video autoplay muted loop playsinline id="bgvid">
-        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
+        <source src="https://willyyek.github.io/NASA/video/exoscan117.mp4" type="video/mp4">
     </video>
     """
     st.markdown(page_bg_video, unsafe_allow_html=True)
@@ -533,7 +533,7 @@ elif page == "Researcher Mode":
     </style>
 
     <video autoplay muted loop playsinline id="bgvid">
-        <source src="https://willyyek.github.io/NASA/exoscan117.mp4" type="video/mp4">
+        <source src="https://willyyek.github.io/NASA/video/exoscan117.mp4" type="video/mp4">
     </video>
     """
     st.markdown(page_bg_video, unsafe_allow_html=True)
@@ -854,4 +854,5 @@ elif page == "Researcher Mode":
         ⚠️ These datasets need to be downloaded in CSV format and uploaded here again.
         """,
         unsafe_allow_html=True
+
     )
