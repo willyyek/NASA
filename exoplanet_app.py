@@ -355,25 +355,26 @@ elif page == "Novice Mode":
     st.header("🟢 Novice Mode - Quick Classification")
 
     # 设置星空背景
-    page_bg_img = """
+    page_bg_video = """
     <style>
-    [data-testid="stAppViewContainer"] {
-        background-image: url("https://www.nasa.gov/wp-content/uploads/2023/07/asteroid-belt.jpg?resize=2000,1125");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-    [data-testid="stHeader"] {
-        #background: rgba(0,0,0,0); /* 顶部透明 */
-    }
-
-    [data-testid="stToolbar"] {
-        right: 2rem;
+    #bgvid {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+        object-fit: cover;
+        background: black;
     }
     </style>
+
+    <video autoplay muted loop id="bgvid">
+        <source src="https://static.moewalls.com/videos/preview/2024/colorful-smoke-planet-preview.webm" type="video/webm">
+    </video>
     """
-    st.markdown(page_bg_img, unsafe_allow_html=True)
+
+    st.markdown(page_bg_video, unsafe_allow_html=True)
 
 
     # NASA Logo + 标题
