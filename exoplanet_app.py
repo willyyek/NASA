@@ -33,6 +33,77 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+
+st.markdown("""
+<style>
+/* ============== 强制覆盖下拉菜单（展开的选项列表） ============== */
+
+/* 常见的 BaseWeb / popover 容器和 menu 节点 */
+div[data-baseweb="menu"], div[data-baseweb="menu"] * ,
+div[class*="baseui-popover"], div[class*="baseui-popover"] * ,
+div[class*="baseweb-popover"], div[class*="baseweb-popover"] * {
+    background: #000000 !important;
+    color: white !important;
+}
+
+/* listbox 可能是 ul 或 div，及其所有子项 */
+ul[role="listbox"], ul[role="listbox"] * ,
+div[role="listbox"], div[role="listbox"] * {
+    background: #000000 !important;
+    color: white !important;
+    border: 1px solid #1E90FF !important;  /* 外框轻微蓝色 */
+}
+
+/* 每个选项（有时是 div[role="option"] 或 li[role="option"]） */
+div[role="option"], div[role="option"] * ,
+li[role="option"], li[role="option"] * {
+    background: #000000 !important;
+    color: white !important;
+    padding: 6px 10px !important;
+}
+
+/* Hover 高亮（选项被悬停时） */
+div[role="option"]:hover, li[role="option"]:hover,
+ul[role="listbox"] li:hover {
+    background: #1E90FF !important;  /* NASA 蓝高亮 */
+    color: black !important;
+}
+
+/* 一些实现使用 rc-virtual-list（虚拟滚动列表），也覆盖它 */
+.rc-virtual-list, .rc-virtual-list-holder, .rc-virtual-list-holder-inner,
+.rc-virtual-list .rc-virtual-list-scrollbar {
+    background: #000000 !important;
+    color: white !important;
+}
+
+/* 美化滚动条（webkit 浏览器）*/
+ul[role="listbox"]::-webkit-scrollbar, div[role="listbox"]::-webkit-scrollbar {
+    width: 10px;
+}
+ul[role="listbox"]::-webkit-scrollbar-track, div[role="listbox"]::-webkit-scrollbar-track {
+    background: #000000 !important;
+}
+ul[role="listbox"]::-webkit-scrollbar-thumb, div[role="listbox"]::-webkit-scrollbar-thumb {
+    background: #1E90FF !important;
+    border-radius: 6px;
+    border: 2px solid #000 !important;
+}
+
+/* 限制高度并启用滚动（避免展开过长） */
+ul[role="listbox"], div[role="listbox"] {
+    max-height: 260px !important;
+    overflow-y: auto !important;
+}
+
+/* 如果仍然被某些内联类覆盖，可以用 very-specific selector（提高权重） */
+div[data-baseweb="menu"] div[role="listbox"] div[role="option"] {
+    background: #000000 !important;
+    color: white !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 # 放在 app 开头
 st.markdown(
     """
@@ -207,21 +278,6 @@ ul[role="listbox"] {
     max-height: 200px;                      /* 限制高度，启用滚动条 */
     overflow-y: auto !important;            /* 确保可以滚动 */
 }
-
-/* 下拉选项 */
-ul[role="listbox"] li {
-    background-color: #000000 !important;
-    color: white !important;
-    padding: 8px;
-}
-
-/* Hover 高亮效果 */
-ul[role="listbox"] li:hover {
-    background-color: #1E90FF !important;   /* NASA 蓝色高亮 */
-    color: black !important;
-}
-</style>
-""", unsafe_allow_html=True)
 
 
 
