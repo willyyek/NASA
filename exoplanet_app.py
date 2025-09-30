@@ -135,7 +135,7 @@ st.markdown(
     <style>
     /* 整体背景黑色 */
     .stApp {
-        background-color: #000000;
+        background-color: transparent !important;
         color: white !important;
         font-family: 'Trebuchet MS', sans-serif;
     }
@@ -189,6 +189,22 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+
+st.markdown(
+    """
+    <style>
+    [data-testid="stAppViewContainer"] {
+        background: transparent;
+    }
+    [data-testid="stHeader"] {
+        background: transparent;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 
 st.markdown(
     """
