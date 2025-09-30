@@ -123,7 +123,7 @@ h3 {
 
 /* 普通 markdown 文本（p, span, div 内文字） */
 p, div, span, label {
-    font-size: 20px !important;
+    font-size: 18px !important;
 }
 </style>
 """, unsafe_allow_html=True)
