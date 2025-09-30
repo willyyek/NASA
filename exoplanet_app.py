@@ -197,6 +197,33 @@ ul[role="listbox"] li:hover {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* 下拉展开菜单整体 */
+ul[role="listbox"] {
+    background-color: #000000 !important;   /* 黑色背景 */
+    color: white !important;                /* 白字 */
+    border: 1px solid #1E90FF !important;   /* NASA 蓝边框 */
+    max-height: 200px;                      /* 限制高度，启用滚动条 */
+    overflow-y: auto !important;            /* 确保可以滚动 */
+}
+
+/* 下拉选项 */
+ul[role="listbox"] li {
+    background-color: #000000 !important;
+    color: white !important;
+    padding: 8px;
+}
+
+/* Hover 高亮效果 */
+ul[role="listbox"] li:hover {
+    background-color: #1E90FF !important;   /* NASA 蓝色高亮 */
+    color: black !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 
 # 加载训练好的模型
 model = pickle.load(open("exoplanet_model.pkl", "rb"))
