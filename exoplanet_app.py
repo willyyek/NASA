@@ -371,26 +371,25 @@ st.markdown(
         display: none !important;
     }
 
-    /* 控制主内容区左右间距 */
-    .block-container {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-        padding-top: 1rem !important;  /* 可以自己调 */
-        padding-bottom: 1rem !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    """
-    <style>
+    /* main 容器整体缩进，sidebar 保留 */
     main[data-testid="stAppViewContainer"] {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* block-container 控制 main 的左右留白 */
+    .block-container {
+        padding-left: 1rem !important;   /* 左边最小化 */
+        padding-right: 1rem !important;  /* 右边最小化 */
+        padding-top: 1rem !important;    /* 上面留一点点 */
+        margin: 0 auto !important;
+        max-width: 100% !important;      /* 占满可用宽度 */
+    }
+
+    /* AppViewBlockContainer 顶部也保持一致 */
+    div[data-testid="stAppViewBlockContainer"] {
+        padding-top: 1rem !important;
+        margin-top: 0 !important;
     }
     </style>
     """,
@@ -992,6 +991,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
