@@ -501,11 +501,11 @@ if page == "Home":
     colA, colB = st.columns([1,1])
     with colA:
         if st.button("Novice Mode 🟢"):
-            page = "Novice Mode"
+            page == "Novice Mode"
 
     with colB:
         if st.button("Researcher Mode 🔬"):
-            page = "Researcher Mode"
+            page == "Researcher Mode"
 
 # --- Novice Mode ---
 elif page == "Novice Mode":
@@ -956,6 +956,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
