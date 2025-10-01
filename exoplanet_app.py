@@ -360,7 +360,7 @@ ul[role="listbox"] {
 st.markdown(
     """
     <style>
-    h1, h2, h3, h4, h5, h6 {
+    h1 {
         text-align: center;
     }
     </style>
@@ -867,6 +867,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
