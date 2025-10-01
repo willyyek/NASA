@@ -142,8 +142,10 @@ div[data-baseweb="menu"] div[role="listbox"] div[role="option"] {
 st.markdown("""
 <style>
 /* Title (st.title 或 markdown #) */
-h1 {
+h1:first-of-type {
     font-size: 100px !important;
+    text-align: center;
+    color: #00BFFF;
 }
 
 /* Header (st.header 或 markdown ##) */
@@ -912,6 +914,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
