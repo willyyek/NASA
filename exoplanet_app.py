@@ -371,8 +371,16 @@ st.markdown(
 st.markdown(
     """
     <style>
-    h1 {
-        margin-top: -40px !important;  /* 往上提 40px，可以调大小 */
+    /* 调整内容区域上下间距 */
+    .block-container {
+        padding-top: 2rem;   /* 上方留白 */
+        padding-bottom: 2rem; /* 下方留白 */
+    }
+
+    /* 页面顶部栏高度压缩 + 透明化 */
+    header[data-testid="stHeader"] {
+        height: 0rem;
+        background: rgba(0,0,0,0);  
     }
     </style>
     """,
@@ -889,6 +897,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
