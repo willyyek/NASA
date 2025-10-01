@@ -141,13 +141,6 @@ div[data-baseweb="menu"] div[role="listbox"] div[role="option"] {
 
 st.markdown("""
 <style>
-/* Title (st.title 或 markdown #) */
-h1:first-of-type {
-    font-size: 100px !important;
-    text-align: center;
-    color: #00BFFF;
-}
-
 /* Header (st.header 或 markdown ##) */
 h2 {
     font-size: 44px !important;
@@ -423,7 +416,10 @@ if page == "Home":
         st.markdown("<div style='margin-left:100px'></div>", unsafe_allow_html=True)  # 加空白
         st.image("https://i.imgur.com/TL2RXUL.png", width=300)
 
-    st.title("Exoscan117 🚀")
+    st.markdown(
+    "<h1 style='text-align: center; font-size: 100px; color: #00BFFF;'>Exoscan117 🚀</h1>",
+    unsafe_allow_html=True
+    )
 
     page_bg_video = """
     <style>
@@ -508,7 +504,7 @@ elif page == "Novice Mode":
         st.image("https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg", width=200)
 
     st.markdown(
-    "<h2 style='text-align: center; font-size: 60px; color: #00BFFF;'>🚀 NASA Exoplanet Classifier</h2>",
+    "<h1 style='text-align: center; font-size: 60px; color: #00BFFF;'>🚀 NASA Exoplanet Classifier</h1>",
     unsafe_allow_html=True
     )
     
@@ -914,6 +910,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
