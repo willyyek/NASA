@@ -379,14 +379,14 @@ st.markdown(
 
     /* block-container 控制 main 的左右留白 */
     .block-container {
-        padding-left: 1rem !important;   /* 左边最小化 */
-        padding-right: 1rem !important;  /* 右边最小化 */
-        padding-top: 1rem !important;    /* 上面留一点点 */
+        padding-left: 4rem !important;   /* 左边留白 */
+        padding-right: 4rem !important;  /* 右边留白 */
+        padding-top: 1rem !important;    /* 上方缩小 */
         margin: 0 auto !important;
-        max-width: 100% !important;      /* 占满可用宽度 */
+        max-width: 100% !important;
     }
 
-    /* AppViewBlockContainer 顶部也保持一致 */
+    /* AppViewBlockContainer 顶部保持一致 */
     div[data-testid="stAppViewBlockContainer"] {
         padding-top: 1rem !important;
         margin-top: 0 !important;
@@ -991,6 +991,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
