@@ -373,8 +373,8 @@ st.markdown(
     <style>
     /* 调整内容区域上下间距 */
     .block-container {
-        padding-top: 2rem;   /* 上方留白 */
-        padding-bottom: 2rem; /* 下方留白 */
+        padding-top: 1rem;   /* 上方留白 */
+        padding-bottom: 1rem; /* 下方留白 */
     }
 
     /* 页面顶部栏高度压缩 + 透明化 */
@@ -897,6 +897,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
