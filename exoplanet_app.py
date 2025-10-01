@@ -402,16 +402,14 @@ st.set_page_config(page_title="🚀 NASA Exoplanet Classifier", layout="wide")
 # --- Sidebar navigation ---
 st.sidebar.subheader("🔭 Navigation")
 
-# 如果 session_state 里没有 page，就设默认值
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
 # Sidebar 控制导航
-st.session_state.page = st.sidebar.radio(
-    "Go to:", ["Home", "Novice Mode", "Researcher Mode"], 
-    index=["Home", "Novice Mode", "Researcher Mode"].index(st.session_state.page)
-)
+choice = st.sidebar.radio("Go to:", ["Home", "Novice Mode", "Researcher Mode"],
+                          index=["Home", "Novice Mode", "Researcher Mode"].index(st.session_state.page))
 
+st.session_state.page = choice
 page = st.session_state.page
 
 
@@ -982,6 +980,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
