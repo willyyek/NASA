@@ -148,17 +148,17 @@ h1 {
 
 /* Header (st.header 或 markdown ##) */
 h2 {
-    font-size: 40px !important;
+    font-size: 60px !important;
 }
 
 /* Subheader (st.subheader 或 markdown ###) */
 h3 {
-    font-size: 32px !important;
+    font-size: 36px !important;
 }
 
 /* 普通 markdown 文本（p, span, div 内文字） */
 p, div, span, label {
-    font-size: 22px !important;
+    font-size: 20px !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -908,6 +908,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
