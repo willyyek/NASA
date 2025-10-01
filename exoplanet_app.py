@@ -143,7 +143,7 @@ st.markdown("""
 <style>
 /* Title (st.title 或 markdown #) */
 h1 {
-    font-size: 80px !important;
+    font-size: 120px !important;
 }
 
 /* Header (st.header 或 markdown ##) */
@@ -381,6 +381,17 @@ page = st.sidebar.radio("Go to:", ["Home", "Novice Mode", "Researcher Mode"])
 # --- Home Page ---
 if page == "Home":
     st.title("Exoscan117 🚀")
+
+    # logo 图标
+    col_empty, col_left, col_mid, col_right, col_empty2 = st.columns([1, 1, 1, 1, 1])
+
+    with col_left:
+        st.markdown("<div style='margin-top:-20px'></div>", unsafe_allow_html=True)
+        st.image("https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg", width=300)  
+    
+    with col_right: 
+        st.markdown("<div style='margin-left:100px'></div>", unsafe_allow_html=True)  # 加空白
+        st.image("https://i.imgur.com/TL2RXUL.png", width=300)
 
     page_bg_video = """
     <style>
@@ -867,6 +878,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
