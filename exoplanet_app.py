@@ -406,6 +406,11 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+# 加载训练好的模型
+model = pickle.load(open("exoplanet_model.pkl", "rb"))
+
+st.set_page_config(page_title="🚀 NASA Exoplanet Classifier", layout="wide")
+
 
 # --- 初始化页面状态 ---
 if "page" not in st.session_state:
@@ -991,6 +996,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
