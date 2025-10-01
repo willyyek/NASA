@@ -404,21 +404,19 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 
-# 加载训练好的模型
-model = pickle.load(open("exoplanet_model.pkl", "rb"))
-
-st.set_page_config(page_title="🚀 NASA Exoplanet Classifier", layout="wide")
-
-# --- Sidebar navigation ---
-st.sidebar.subheader("🔭 Navigation")
-
+# --- 初始化页面状态 ---
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
-# Sidebar 控制导航
-choice = st.sidebar.radio("Go to:", ["Home", "Novice Mode", "Researcher Mode"],
-                          index=["Home", "Novice Mode", "Researcher Mode"].index(st.session_state.page))
+# --- Sidebar navigation ---
+st.sidebar.subheader("🔭 Navigation")
+choice = st.sidebar.radio(
+    "Go to:",
+    ["Home", "Novice Mode", "Researcher Mode"],
+    index=["Home", "Novice Mode", "Researcher Mode"].index(st.session_state.page)
+)
 
+# 保证 sidebar 的选择覆盖 session_state
 st.session_state.page = choice
 page = st.session_state.page
 
@@ -990,6 +988,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
