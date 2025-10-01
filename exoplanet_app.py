@@ -401,7 +401,19 @@ st.set_page_config(page_title="🚀 NASA Exoplanet Classifier", layout="wide")
 
 # --- Sidebar navigation ---
 st.sidebar.subheader("🔭 Navigation")
-page = st.sidebar.radio("Go to:", ["Home", "Novice Mode", "Researcher Mode"])
+
+# 如果 session_state 里没有 page，就设默认值
+if "page" not in st.session_state:
+    st.session_state.page = "Home"
+
+# Sidebar 控制导航
+st.session_state.page = st.sidebar.radio(
+    "Go to:", ["Home", "Novice Mode", "Researcher Mode"], 
+    index=["Home", "Novice Mode", "Researcher Mode"].index(st.session_state.page)
+)
+
+page = st.session_state.page
+
 
 # --- Home Page ---
 if page == "Home":
@@ -456,50 +468,58 @@ if page == "Home":
         unsafe_allow_html=True
     )
 
-    # 自定义按钮样式
-    st.markdown(
-        """
+    # 自定义按钮 (Novice Mode)
+    if st.button("Novice Mode 🟢", key="novice_btn"):
+        st.session_state.page = "Novice Mode"
+
+    st.markdown("""
         <style>
-        div.stButton > button {
-            font-weight: bold;
-            font-size: 28px;
-            padding: 20px 36px;
-            border-radius: 16px;
-            border: 2px solid;
-            width: 100%;
-            height: 80px;
-        }
-        /* Novice Mode 按钮 */
-        div[data-testid="stButton"]:first-child > button {
-            border-color: #00FF00;
-            background-color: #006400;
+        div.stButton > button:first-child {
+            background-color: #006400;   /* 深绿色 */
             color: yellow;
+            border: 2px solid #00FF00;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 25px;
+            padding: 8px 20px;
         }
-        div[data-testid="stButton"]:first-child > button:hover {
+        div.stButton > button:first-child:hover {
             background-color: #00FF00;
             color: black;
         }
-        /* Researcher Mode 按钮 */
-        div[data-testid="stButton"]:nth-child(2) > button {
-            border-color: #1E90FF;
-            background-color: #00008B;
+        </style>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    # 自定义按钮 (Researcher Mode)
+    if st.button("Researcher Mode 🔬", key="researcher_btn"):
+        st.session_state.page = "Researcher Mode"
+
+    st.markdown("""
+        <style>
+        div.stButton > button:nth-child(1) {
+            background-color: #00008B;   /* 深蓝色 */
             color: yellow;
+            border: 2px solid #1E90FF;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 25px;
+            padding: 8px 20px;
         }
-        div[data-testid="stButton"]:nth-child(2) > button:hover {
+        div.stButton > button:nth-child(1):hover {
             background-color: #1E90FF;
             color: black;
         }
         </style>
-        """,
-        unsafe_allow_html=True
-    )
+        """, unsafe_allow_html=True)
 
     # 两个按钮并排
     col1, col2 = st.columns(2)
 
     with col1:
         if st.button("Novice Mode 🟢"):
-            page = "Novice Mode"
+            st.session_state.page = "Novice Mode"
         st.markdown(
             """
             <div style='font-size:20px; margin-top:1rem;'>
@@ -511,7 +531,7 @@ if page == "Home":
 
     with col2:
         if st.button("Researcher Mode 🔬"):
-            page = "Researcher Mode"
+            st.session_state.page = "Researcher Mode"
         st.markdown(
             """
             <div style='font-size:20px; margin-top:1rem;'>
@@ -969,6 +989,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
