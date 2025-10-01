@@ -454,12 +454,58 @@ if page == "Home":
     st.markdown(
         """
         Welcome to our Exoplanet Classifier!  
-        Choose one of the modes from the sidebar:
-        - **Novice Mode** 🟢 : For beginners, explore planets by entering basic parameters. (Default dataset: 🔗 <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-    bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">NASA Kepler Objects of Interest(KOI)</a>)
-        - **Researcher Mode** 🔬 : For advanced users, upload datasets, train models, and analyze results.  
+        Choose one of the modes from below:
         """,
         unsafe_allow_html=True
     )
+
+    # 按钮样式
+    st.markdown(
+        """
+        <style>
+        div.stButton > button {
+            font-weight: bold;
+            font-size: 30px;
+            padding: 10px 25px;
+            border-radius: 12px;
+            border: 2px solid;
+            margin: 15px 0px;
+            width: 100%;
+        }
+        /* Novice Mode 按钮 */
+        div[data-testid="stButton"]:first-child > button {
+            border-color: #00FF00;
+            background-color: #006400;
+            color: yellow;
+        }
+        div[data-testid="stButton"]:first-child > button:hover {
+            background-color: #00FF00;
+            color: black;
+        }
+        /* Researcher Mode 按钮 */
+        div[data-testid="stButton"]:nth-child(2) > button {
+            border-color: #1E90FF;
+            background-color: #00008B;
+            color: yellow;
+        }
+        div[data-testid="stButton"]:nth-child(2) > button:hover {
+            background-color: #1E90FF;
+            color: black;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # 创建按钮
+    colA, colB = st.columns([1,1])
+    with colA:
+        if st.button("Novice Mode 🟢"):
+            page = "Novice Mode"
+
+    with colB:
+        if st.button("Researcher Mode 🔬"):
+            page = "Researcher Mode"
 
 # --- Novice Mode ---
 elif page == "Novice Mode":
@@ -910,6 +956,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
