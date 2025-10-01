@@ -371,16 +371,28 @@ st.markdown(
 st.markdown(
     """
     <style>
-    /* 调整内容区域上下间距 */
+    /* 整个页面的主要容器 */
     .block-container {
-        padding-top: 1rem;   /* 上方留白 */
-        padding-bottom: 1rem; /* 下方留白 */
+        padding-top: 2rem !important;   /* 内容区顶端留白 */
+        padding-bottom: 2rem !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
     }
 
-    /* 页面顶部栏高度压缩 + 透明化 */
+    /* 顶部导航栏（默认留白很高） */
     header[data-testid="stHeader"] {
         height: 0rem;
         background: rgba(0,0,0,0);  
+    }
+
+    /* main 区域再压一层 */
+    div[data-testid="stAppViewBlockContainer"] {
+        padding-top: 2rem !important;
+    }
+
+    /* sidebar 也减小间距 */
+    section[data-testid="stSidebar"] .block-container {
+        padding-top: 1rem !important;
     }
     </style>
     """,
@@ -897,6 +909,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
