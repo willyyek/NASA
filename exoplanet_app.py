@@ -143,7 +143,7 @@ st.markdown("""
 <style>
 /* Title (st.title 或 markdown #) */
 h1 {
-    font-size: 50px !important;
+    font-size: 80px !important;
 }
 
 /* Header (st.header 或 markdown ##) */
@@ -867,6 +867,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
