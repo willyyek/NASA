@@ -357,6 +357,17 @@ ul[role="listbox"] {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown(
+    """
+    <style>
+    h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 
 # 加载训练好的模型
 model = pickle.load(open("exoplanet_model.pkl", "rb"))
@@ -856,6 +867,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
