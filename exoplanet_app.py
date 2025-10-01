@@ -402,6 +402,8 @@ st.set_page_config(page_title="🚀 NASA Exoplanet Classifier", layout="wide")
 # --- Sidebar navigation ---
 st.sidebar.subheader("🔭 Navigation")
 
+page = st.sidebar.radio("Go to:", ["Home", "Novice Mode", "Researcher Mode"])
+
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
@@ -980,6 +982,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
