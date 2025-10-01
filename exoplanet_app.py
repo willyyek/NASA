@@ -372,7 +372,7 @@ st.markdown(
     """
     <style>
     h1 {
-        margin-top: -40px;  /* 往上提 40px，可以调大小 */
+        margin-top: -40px !important;  /* 往上提 40px，可以调大小 */
     }
     </style>
     """,
@@ -889,6 +889,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
