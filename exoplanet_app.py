@@ -452,25 +452,22 @@ if page == "Home":
 
     st.subheader("🌌 Galactic Explorer 117")
     st.markdown(
-        """
-        Welcome to our Exoplanet Classifier!  
-        Choose one of the modes from below:
-        """,
+        "Welcome to our Exoplanet Classifier! Choose one of the modes below:",
         unsafe_allow_html=True
     )
 
-    # 按钮样式
+    # 自定义按钮样式
     st.markdown(
         """
         <style>
         div.stButton > button {
             font-weight: bold;
-            font-size: 30px;
-            padding: 10px 25px;
-            border-radius: 12px;
+            font-size: 28px;
+            padding: 20px 36px;
+            border-radius: 16px;
             border: 2px solid;
-            margin: 15px 0px;
             width: 100%;
+            height: 80px;
         }
         /* Novice Mode 按钮 */
         div[data-testid="stButton"]:first-child > button {
@@ -497,15 +494,31 @@ if page == "Home":
         unsafe_allow_html=True
     )
 
-    # 创建按钮
-    colA, colB = st.columns([1,1])
-    with colA:
-        if st.button("Novice Mode 🟢"):
-            page == "Novice Mode"
+    # 两个按钮并排
+    col1, col2 = st.columns(2)
 
-    with colB:
+    with col1:
+        if st.button("Novice Mode 🟢"):
+            page = "Novice Mode"
+        st.markdown(
+            """
+            <div style='font-size:20px; margin-top:1rem;'>
+            - For beginners, explore planets by entering basic parameters.<br>
+            - Default dataset: 🔗 <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative" target="_blank">NASA KOI</a>
+            </div>
+            """, unsafe_allow_html=True
+        )
+
+    with col2:
         if st.button("Researcher Mode 🔬"):
-            page == "Researcher Mode"
+            page = "Researcher Mode"
+        st.markdown(
+            """
+            <div style='font-size:20px; margin-top:1rem;'>
+            - For advanced users, upload datasets, train models, and analyze results.
+            </div>
+            """, unsafe_allow_html=True
+        )
 
 # --- Novice Mode ---
 elif page == "Novice Mode":
@@ -956,6 +969,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
