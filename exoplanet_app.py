@@ -371,28 +371,27 @@ st.markdown(
 st.markdown(
     """
     <style>
-    /* 去掉 header 本身高度 */
+    /* 顶部 header 去掉 */
     header[data-testid="stHeader"] {
-        height: 0rem !important;
-        background: rgba(0,0,0,0);
+        display: none !important;
     }
 
-    /* main 容器顶端间距压缩 */
+    /* main 容器去掉所有 padding/margin */
     main[data-testid="stAppViewContainer"] {
-        padding-top: 1rem !important;
-        margin-top: 0rem !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
-    /* block-container 顶部留白 */
+    /* block-container 顶部留 1rem */
     .block-container {
         padding-top: 1rem !important;
-        margin-top: 0rem !important;
+        margin-top: 0 !important;
     }
 
-    /* 主体区域也保持 1rem */
+    /* AppViewBlockContainer 也统一 */
     div[data-testid="stAppViewBlockContainer"] {
         padding-top: 1rem !important;
-        margin-top: 0rem !important;
+        margin-top: 0 !important;
     }
     </style>
     """,
@@ -909,6 +908,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
