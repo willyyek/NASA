@@ -363,6 +363,26 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    /* 去掉顶部 header */
+    header[data-testid="stHeader"] {
+        display: none !important;
+    }
+
+    /* 控制主内容区左右间距 */
+    .block-container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        padding-top: 1rem !important;  /* 可以自己调 */
+        padding-bottom: 1rem !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.markdown("""
     <style>
     /* 让 Sidebar 永远显示在最上层 */
@@ -958,6 +978,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
