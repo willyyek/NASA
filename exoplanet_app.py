@@ -158,7 +158,7 @@ h3 {
 
 /* 普通 markdown 文本（p, span, div 内文字） */
 p, div, span, label {
-    font-size: 18px !important;
+    font-size: 22px !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -908,6 +908,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
