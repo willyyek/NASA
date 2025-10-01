@@ -148,7 +148,7 @@ h1 {
 
 /* Header (st.header 或 markdown ##) */
 h2 {
-    font-size: 60px !important;
+    font-size: 44px !important;
 }
 
 /* Subheader (st.subheader 或 markdown ###) */
@@ -908,6 +908,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
