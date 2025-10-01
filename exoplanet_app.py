@@ -371,15 +371,18 @@ st.markdown(
 st.markdown(
     """
     <style>
-    /* 调整内容区域上下间距 */
+    /* 只改上方的留白 */
     .block-container {
-        padding-top: 2rem;   /* 上方留白 */
+        padding-top: 0.5rem !important;   /* 上方尽量贴紧 */
     }
 
-    /* 页面顶部栏高度压缩 + 透明化 */
+    div[data-testid="stAppViewBlockContainer"] {
+        padding-top: 0.5rem !important;   /* 主体容器上方 */
+    }
+
     header[data-testid="stHeader"] {
-        height: 0rem;
-        background: rgba(0,0,0,0);  
+        height: 0rem !important;          /* 去掉默认 header 的高度 */
+        background: rgba(0,0,0,0);
     }
     </style>
     """,
@@ -896,6 +899,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
