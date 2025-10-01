@@ -363,28 +363,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown(
-    """
-    <style>
-    /* 顶部 header 去掉 */
-    header[data-testid="stHeader"] {
-        display: none !important;
-    }
-
-    /* 只调整 main 顶部 padding，保留侧边栏空间 */
-    main[data-testid="stAppViewContainer"] {
-        padding-top: 0.5rem !important;
-    }
-
-    /* block-container 顶部留 1rem */
-    .block-container {
-        padding-top: 1rem !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 st.markdown("""
     <style>
     /* 让 Sidebar 永远显示在最上层 */
@@ -980,6 +958,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
