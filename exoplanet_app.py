@@ -371,22 +371,14 @@ st.markdown(
         display: none !important;
     }
 
-    /* main 容器去掉所有 padding/margin */
+    /* 只调整 main 顶部 padding，保留侧边栏空间 */
     main[data-testid="stAppViewContainer"] {
-        padding: 0 !important;
-        margin: 0 !important;
+        padding-top: 0.5rem !important;
     }
 
     /* block-container 顶部留 1rem */
     .block-container {
         padding-top: 1rem !important;
-        margin-top: 0 !important;
-    }
-
-    /* AppViewBlockContainer 也统一 */
-    div[data-testid="stAppViewBlockContainer"] {
-        padding-top: 1rem !important;
-        margin-top: 0 !important;
     }
     </style>
     """,
@@ -988,6 +980,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
