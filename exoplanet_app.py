@@ -508,7 +508,7 @@ elif page == "Novice Mode":
         st.image("https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg", width=200)
 
     st.markdown(
-    "<h1 style='text-align: center; font-size: 60px; color: #00BFFF;'>🚀 NASA Exoplanet Classifier</h1>",
+    "<h2 style='text-align: center; font-size: 60px; color: #00BFFF;'>🚀 NASA Exoplanet Classifier</h2>",
     unsafe_allow_html=True
     )
     
@@ -914,6 +914,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
