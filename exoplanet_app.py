@@ -467,52 +467,45 @@ if page == "Home":
         "Welcome to our Exoplanet Classifier! Choose one of the modes below:",
         unsafe_allow_html=True
     )
-
-    # 自定义按钮 (Novice Mode)
-    if st.button("Novice Mode 🟢", key="novice_btn"):
-        st.session_state.page = "Novice Mode"
-
-    st.markdown("""
+    
+    
+    # 自定义按钮样式
+    st.markdown(
+        """
         <style>
-        div.stButton > button:first-child {
-            background-color: #006400;   /* 深绿色 */
-            color: yellow;
-            border: 2px solid #00FF00;
-            border-radius: 10px;
+        div.stButton > button {
             font-weight: bold;
-            font-size: 25px;
-            padding: 8px 20px;
+            font-size: 28px;
+            padding: 20px 36px;
+            border-radius: 16px;
+            border: 2px solid;
+            width: 100%;
+            height: 80px;
         }
-        div.stButton > button:first-child:hover {
+        /* Novice Mode 按钮 */
+        div[data-testid="stButton"]:first-child > button {
+            border-color: #00FF00;
+            background-color: #006400;
+            color: yellow;
+        }
+        div[data-testid="stButton"]:first-child > button:hover {
             background-color: #00FF00;
             color: black;
         }
-        </style>
-        """, unsafe_allow_html=True)
-
-    st.markdown("<br><br>", unsafe_allow_html=True)
-
-    # 自定义按钮 (Researcher Mode)
-    if st.button("Researcher Mode 🔬", key="researcher_btn"):
-        st.session_state.page = "Researcher Mode"
-
-    st.markdown("""
-        <style>
-        div.stButton > button:nth-child(1) {
-            background-color: #00008B;   /* 深蓝色 */
+        /* Researcher Mode 按钮 */
+        div[data-testid="stButton"]:nth-child(2) > button {
+            border-color: #1E90FF;
+            background-color: #00008B;
             color: yellow;
-            border: 2px solid #1E90FF;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 25px;
-            padding: 8px 20px;
         }
-        div.stButton > button:nth-child(1):hover {
+        div[data-testid="stButton"]:nth-child(2) > button:hover {
             background-color: #1E90FF;
             color: black;
         }
         </style>
-        """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
     # 两个按钮并排
     col1, col2 = st.columns(2)
@@ -989,6 +982,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
