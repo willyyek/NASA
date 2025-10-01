@@ -379,8 +379,8 @@ st.markdown(
 
     /* block-container 控制 main 的左右留白 */
     .block-container {
-        padding-left: 4rem !important;   /* 左边留白 */
-        padding-right: 4rem !important;  /* 右边留白 */
+        padding-left: 6rem !important;   /* 左边留白 */
+        padding-right: 6rem !important;  /* 右边留白 */
         padding-top: 1rem !important;    /* 上方缩小 */
         margin: 0 auto !important;
         max-width: 100% !important;
@@ -991,6 +991,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
