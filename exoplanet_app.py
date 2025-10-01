@@ -361,7 +361,7 @@ ul[role="listbox"] {
 # 加载训练好的模型
 model = pickle.load(open("exoplanet_model.pkl", "rb"))
 
-st.set_page_config(page_title="🚀 NASA Exoplanet Classifier", layout="wide")
+st.set_page_config(page_title="Exoscan 117 🚀", layout="wide", text_align="center")
 
 # --- Sidebar navigation ---
 st.sidebar.subheader("🔭 Navigation")
@@ -856,5 +856,6 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
