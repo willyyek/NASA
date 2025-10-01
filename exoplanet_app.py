@@ -368,6 +368,17 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    h1 {
+        margin-top: -40px;  /* 往上提 40px，可以调大小 */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 
 # 加载训练好的模型
 model = pickle.load(open("exoplanet_model.pkl", "rb"))
@@ -878,6 +889,7 @@ elif page == "Researcher Mode":
         unsafe_allow_html=True
 
     )
+
 
 
 
